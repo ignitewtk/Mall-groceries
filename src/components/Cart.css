@@ -1,0 +1,19 @@
+
+
+.nav-menu {
+    background-color: antiquewhite;
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    transition: 805ms;
+}
+
+
+.nav-menu.active {
+    right: 0;
+    transition: 350mx
+}
