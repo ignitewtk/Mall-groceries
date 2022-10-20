@@ -22,7 +22,6 @@ class CartSider extends React.Component {
         ]
     }
     render () {
-        console.log("cartshowed in CartSider:", this.props.cartShowed)
         return (
             <div>
             

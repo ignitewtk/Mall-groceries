@@ -28,7 +28,6 @@ class Theme extends React.Component {
 
 
   render() {
-    console.log("Cartshowed in Theme:", this.state.cartShowed)
     const menuItems = [
       {
         label: <Link to="productList"> ALL </Link>,
@@ -103,16 +102,17 @@ class ThemeHeader extends React.Component {
   }
 
   render() {
-    console.log("Cartshowed in ThemeHeader:", this.state.cartShowed)
     return (
       <div style={{"padding":"20px 20px", "backgroundColor":"#C7E5B7"}}>
         <Row >
           <Col span={4}> <Link to="main"> LOGO </Link> </Col>
-          <Col span={8}>  </Col>
+          <Col span={6}>  </Col>
           <Col span={4}> <Search placeholder="Search"/>  </Col>
           <Col span={2}>  </Col>
           <Col span={2}> <EnvironmentOutlined /> Location </Col>
-          <Col span={2}> <Link to='login'> Account </Link> </Col>
+          <Col span={2}> <Link to='login'> Login </Link> </Col>
+          <Col span={2}> <Link to='profile'> Account </Link> </Col>
+
           <Col span={2}> 
           <span onClick={this.showCart}> <ShoppingCartOutlined /> Cart  </span>  
           

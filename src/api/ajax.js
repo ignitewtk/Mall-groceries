@@ -7,20 +7,53 @@
 
 import axios from 'axios'
 
-export default function ajax(url, data={}, type='GET') {
-    return new Promise(async (resolve, reject) => {
-        let promise
+export default function ajax(url, data={}, type='GET', responseType='json') {
+    
+    let promise
 
-        if(type === 'GET') {
-            // 发GET请求
-            promise = await axios.get(url, {
-                params: data // 指定请求参数
-            })
-        } else if (type === 'POST') {
-            promise = await axios.post(url, data)
-        }
-        return promise
+    if(type === 'GET') {
+        // 发GET请求
+        promise = axios.get(url, {
+            params: data // 指定请求参数
+        })
+    } else if (type === 'POST') {
+        promise = axios.post(url, data)
+    }
+    return promise
 
-    })
+    // 错误代码，无法获得返回值，async和await已经添加在ajax里了
+    // return new Promise(async (resolve, reject) => {
+    //     let promise
+
+    //     if(type === 'GET') {
+    //         // 发GET请求
+    //         promise = await axios.get(url, {
+    //             params: data // 指定请求参数
+    //         })
+    //     } else if (type === 'POST') {
+    //         promise = await axios.post(url, data)
+    //     }
+    //     return promise
+    // })
+
 }
 
+// upload image
+function doUpload(){
+    ajax({
+        url: 'http://localhost:3000/upload-single',
+        type: 'POST',
+        cache: false,
+        data: new FormData(),
+        processData: false, // necessary
+        contentType: false, // necessary
+        success: function(data) {
+            console.log(data)
+            if(data.err == 0) {
+                console.log("Upload Success.")
+                // set <img> src 'http://localhost:3000' + '/img/xxx.jpg'
+            } else {
+                alert('Upload failed.')
+            }
+        }
+    }) }

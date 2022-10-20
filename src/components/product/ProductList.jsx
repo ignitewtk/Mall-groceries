@@ -1,12 +1,14 @@
 
 import React from "react"
 import Product from "./Product";
-import { Button, Pagination,  Select, Row, Col, Checkbox, Input } from 'antd'
+import { Image, Button, Pagination,  Select, Row, Col, Checkbox, Input } from 'antd'
 
 import products from './config/products'
-
+import { reqGetProducts, reqGetImage } from "../../api";
 import  { useSelector, useDispatch } from 'react-redux'
-import { applyFilters, selectFilters, selectCategory, selectRating, selectPrice } from '../../redux/productSlice'
+import { applyFilters, selectFilters, selectCategory, selectRating, selectPrice, 
+    displayImage, selectDisplayedImage } from '../../redux/productSlice'
+
 
 const {Option} = Select
 const {Search} = Input;
@@ -18,18 +20,62 @@ function ControlPanel() {
     const category = useSelector(selectCategory)
     const rating = useSelector(selectRating)
     const price = useSelector(selectPrice)
+    const displayedImage = useSelector(selectDisplayedImage)
+
+    function getBase64(img) {
+        const base64Url = `data:image/jpg;base64, ${window.btoa(
+            new Uint8Array(img).reduce(
+                (data, byte) => data + String.fromCharCode(byte), ""
+            )
+        )}`
+        return base64Url
+    }
+
+    function submitFilter() {
+        const newParam = {
+            category: 'veges',
+            rating: 3,
+            price: 10
+        }
+        // update filter param state
+        dispatch(applyFilters(newParam))
+        
+        // send request to backend and update product list
+        reqGetProducts(newParam).then(response =>  {
+            console.log("return product list:", response.data)
+        }).catch(error => {
+            console.log("return product list error:", error)
+        })
+
+        let productName = "Tomatoes.jpg"
+        reqGetImage({productName: productName}).then(response =>  {
+            console.log("return displayed image:", response)
+            dispatch(displayImage(response.data))
+        }).catch(error => {
+            console.log("return displayed image error:", error)
+        })
+    }
+
+
 
     return (
         <div style={{"padding":"30px 0px 0px 30px"}}>
-            <Row> <Button onClick={
-                () => dispatch(applyFilters(
-                    {
-                        category: 'veges',
-                        rating: 3,
-                        price: 10
-                    }
-                ))
-                } type="primary"> Apply Filters </Button> </Row> 
+            
+            <Image width={200} height={200} 
+                // referrer="no-referrer|origin|unsafe-url" 
+                src={displayedImage} 
+                />
+
+            <div> <span> {displayedImage} </span></div>
+            <Row> <Button onClick={submitFilter
+                // () => {
+                //     dispatch(applyFilters({
+                //         category: 'veges',
+                //         rating: 3,
+                //         price: 10
+                //     }))
+                // }
+            } type="primary"> Apply Filters </Button> </Row> 
             <Row> <Search placeholder="Search"/> </Row>
             <Row> <span> {category} and {rating} and {price} </span></Row>
             <Row>
@@ -93,11 +139,12 @@ function ControlPanel() {
 }
 
 
-
 class ProductList extends React.Component {
+
     render () {
         return (
             <Row>
+                
                 <Col span={6}> <ControlPanel /> </Col> 
                 <Col span={18}>
                     <Row>

@@ -1,7 +1,7 @@
 
 import React from "react"
 import { Rate, Collapse, Image} from 'antd'
-
+import { reqGetImage } from "../../api"
 
 import 'antd/dist/antd.css'
 
@@ -31,13 +31,23 @@ class Product extends React.Component {
                 img: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
             }
         }
+        this.reqImage = this.reqImage.bind(this)
+    }
+
+    reqImage(e) {
+        console.log("click product name and get image", e.target)
+        reqGetImage({productName: this.productDetail.name}).then(response => {
+            console.log("(Product.jsx/reqImage):", response.data)
+        }).catch(error => {
+            console.log("(Product.jsx/reqImage) error", error)
+        })
     }
 
     render() {
         return (
             <div style={{wdith:"300px", height:"400px", display:"inline", margin: "20px 10px"}}>
                 <Image width={200} height={200} src={this.productDetail.img} />
-                <div>  {this.productDetail.name} </div>
+                <div onClick={this.reqImage}>  {this.productDetail.name} </div>
                 <div> Description </div>
                 <div> Sales </div>
                 <Rate disabled defaultValue={this.productDetail.rating}> </Rate>

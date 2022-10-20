@@ -4,7 +4,9 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import Theme from './components/Theme'
 import MainPage from './components/MainPage'
 import ProductList from './components/product/ProductList'
-import Login from './components/account/login';
+import Login from './components/account/login'
+import UserProfile from './components/account/UserProfile'
+
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
           <Route path='main' element={<MainPage />}/>
           <Route path='productList' element={<ProductList />}/>
           <Route path='/login' element={<Login />} />
+          <Route path='/profile' element={<UserProfile />} />
         </Route>
         
 

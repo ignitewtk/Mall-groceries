@@ -31,21 +31,46 @@ export const reqRegister = (username, passowrd, email) => ajax('/register', {use
 export const reqAddUser = (user) => ajax('/users/add', user, 'POST')
 
 
+/* Get profile image
+    url: '/account/profileImage'      
+    param: {
+        fileName: <string>
+    }
+    return: Promise object with a list of products' data. 
+    {
+        url: <string> the image URL on server
+    }
+*/
+export const reqGetProfileImage = (param) => ajax('/account/profileImage', param, 'POST')
 
 
 
-
-// Product
-// 
 /* Get product list
+    url: '/product/list'      
     param: {
         categories: <string>,
         rating: <int>,
         price: <double>,
     }
-    return: Promise object
+    return: Promise object with a list of products' data. 
+    {
+        data: [
+            ...
+            {
+                name: <string>,
+                category: <string>,
+                originPrice: <double>,
+                discountPrice: <double>,
+                rating: <double>,
+                img: <?>,
+            }
+        ]
+    }
 */
-export const reqGetProducts = (param) => ajax('/products', param, 'POST')
+export const reqGetProducts = (param) => ajax('/product/list', param, 'POST')
+
+export const reqGetImage = (param) => ajax('/product/image', param, 'POST')
+
 
 // Upload file
 // export const reqAddFile = (files) =>  ajax('/files/add', files, 'POST')
