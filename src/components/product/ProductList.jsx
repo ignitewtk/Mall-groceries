@@ -39,9 +39,9 @@ function ControlPanel() {
                         style={{
                             width: 200,
                         }}>
-                        <Option Value="default"> Sort By Price: default </Option>
-                        <Option Value="price+"> Sort By Price: low to high </Option>
-                        <Option Value="price-"> Sort By Price: high to low </Option>
+                        <Option value="default"> Sort By Price: default </Option>
+                        <Option value="price+"> Sort By Price: low to high </Option>
+                        <Option value="price-"> Sort By Price: high to low </Option>
                     </Select>
                 </Col>
             </Row>
@@ -52,9 +52,9 @@ function ControlPanel() {
                         style={{
                             width: 200,
                         }}>
-                        <Option Value="default"> Sort By Time: default </Option>
-                        <Option Value="time+"> Sort By Time: Oldest </Option>
-                        <Option Value="time-"> Sort By Time: Newest </Option>
+                        <Option value="default"> Sort By Time: default </Option>
+                        <Option value="time+"> Sort By Time: Oldest </Option>
+                        <Option value="time-"> Sort By Time: Newest </Option>
                     </Select>
                 </Col>
             </Row>
@@ -65,9 +65,9 @@ function ControlPanel() {
                         style={{
                             width: 200,
                         }}>
-                        <Option Value="default"> Sort By Rating: default </Option>
-                        <Option Value="rating+"> Sort By Rating: low to high </Option>
-                        <Option Value="rating-"> Sort By Rating: high to low </Option>
+                        <Option value="default"> Sort By Rating: default </Option>
+                        <Option value="rating+"> Sort By Rating: low to high </Option>
+                        <Option value="rating-"> Sort By Rating: high to low </Option>
                     </Select>
                 </Col>
             </Row>
@@ -138,8 +138,8 @@ class ProductList extends React.Component {
                     </Row>
                     <Row>
                         <Col span={8}><Product /></Col>
-                        <Col span={8}><Product /></Col>
-                        <Col span={8}><Product /></Col>
+                        {/* <Col span={8}><Product /></Col>
+                        <Col span={8}><Product /></Col> */}
                     </Row>
                     <Row>
                     <Pagination 

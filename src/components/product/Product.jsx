@@ -46,7 +46,7 @@ class Product extends React.Component {
                     <div> Review </div>
                 </div>
 
-                <div> $ <span style={{color:"red", "font-size":"18px", "font-weight":"bold"}}>{this.productDetail.discountPrice}</span> </div>
+                <div> $ <span style={{color:"red", fontSize:"18px", fontWeight:"bold"}}>{this.productDetail.discountPrice}</span> </div>
                 <div> RRP: <s>${this.productDetail.originPrice}</s> </div>
                 
                 <Collapse  style={{width:"300px"}} defaultActiveKey={['1']} onChange={onChange}>
