@@ -46,7 +46,10 @@ class Product extends React.Component {
     render() {
         return (
             <div style={{wdith:"300px", height:"400px", display:"inline", margin: "20px 10px"}}>
-                <Image width={200} height={200} src={this.productDetail.src} />
+                <Image 
+                    width={200} height={200} 
+                    style={{margin:"0px"}}
+                    src={this.productDetail.src} />
                 <div onClick={this.reqImage}>  {this.productDetail.name} </div>
                 <div> Description </div>
                 <div> Sales </div>
@@ -59,11 +62,11 @@ class Product extends React.Component {
                 <div> $ <span style={{color:"red", fontSize:"18px", fontWeight:"bold"}}>{this.productDetail.discountPrice}</span> </div>
                 <div> RRP: <s>${this.productDetail.originPrice}</s> </div>
                 
-                <Collapse  style={{width:"300px"}} defaultActiveKey={['1']} onChange={onChange}>
+                {/* <Collapse  style={{width:"300px"}} defaultActiveKey={['1']} onChange={onChange}>
                     <Panel header="This is Specification of Product 1">
                         <p> {text} </p>
                     </Panel>
-                </Collapse>
+                </Collapse> */}
             </div>
         )
     }

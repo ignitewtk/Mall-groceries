@@ -188,9 +188,10 @@ class ProductList extends React.Component {
                             }
                         }/>
                     </Row>
+                    */}
                     <Row>
                         <Col span={8}><Product /></Col>
-                    </Row> */}
+                    </Row> 
                     <Row>
                     <Pagination 
                         total={12}
