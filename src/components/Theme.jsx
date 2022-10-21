@@ -7,7 +7,7 @@ import { Outlet, Link } from 'react-router-dom'
 import Banner from "./Banner";
 import CartSider from "./cart/CartSider"
 import {store} from '../store'
-// import {connect} from 'react-redux'
+import {connect} from 'react-redux'
 
 const {Search} = Input;
 
@@ -26,8 +26,6 @@ class Theme extends React.Component {
       return { cartShowed: !state.cartShowed }
     })
   }
-
-  
 
   render() {
     const menuItems = [
@@ -83,6 +81,21 @@ class Theme extends React.Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+      sendAction: () => {
+        dispatch({
+          type: "add_action"
+        })
+      }
+    }
+}
+
+const mapStateToProps = (state) => {
+  return {state}
+}
+
+
 class ThemeHeader extends React.Component {
 
   constructor(props) {
@@ -118,7 +131,7 @@ class ThemeHeader extends React.Component {
           <Col span={2}>  </Col>
           <Col span={2}> <EnvironmentOutlined /> Location </Col>
           <Col span={2}> <Link to='login'> Login </Link> </Col>
-        <Col span={2}> <Link to='profile'> {store.getState().account.userName} </Link> </Col>
+        <Col span={2}> <Link to='profile'> {store.getState().account.sessionUserName} </Link> </Col>
 
           <Col span={2}> 
           <span onClick={this.showCart}> <ShoppingCartOutlined /> Cart  </span>  
@@ -168,4 +181,4 @@ class About extends React.Component {
   }
 }
 
-export default Theme;
+export default connect(mapStateToProps, mapDispatchToProps)(Theme);

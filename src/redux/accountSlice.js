@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const accountSlice = createSlice({
     name: 'account',
     initialState: {
+        sessionUserName: 'Account',
         userName: 'Account',
         password: '',
         email: '',
@@ -10,6 +11,10 @@ export const accountSlice = createSlice({
         profileImageSrc: '',
     },
     reducers: {
+        setSessionUserName: (state, action) => {
+            console.log("(accountSlice.js/setSessionUserName): ", action.payload)
+            state.sessionUserName = action.payload
+        },
         setUserName: (state, action) => {
             console.log("(accountSlice.js/setUserName): ", action.payload)
             state.userName = action.payload
@@ -33,7 +38,8 @@ export const accountSlice = createSlice({
     }
 })
 
-export const { setUserName, setPassword, setEmail, setUploadFile, setProfileImageSrc } = accountSlice.actions
+export const { setSessionUserName, setUserName, setPassword, setEmail, setUploadFile, setProfileImageSrc } = accountSlice.actions
+export const selectSessionUserName = (state) => state.account.sessionUserName
 export const selectUserName = (state) => state.account.userName
 export const selectPassword = (state) => state.account.password
 export const selectEmail = (state) => state.account.email

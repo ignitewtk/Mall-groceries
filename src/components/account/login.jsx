@@ -7,7 +7,8 @@ import authGoogle from './auth'
 import { googleSignout } from './auth'
 import { reqLogin } from '../../api'
 import  { useSelector, useDispatch } from 'react-redux'
-import { setUserName, setPassword, setEmail, selectUserName, selectPassword, selectEmail } from '../../redux/accountSlice'
+import { setSessionUserName, setUserName, setPassword, setEmail, 
+    selectSessionUserName, selectUserName, selectPassword, selectEmail } from '../../redux/accountSlice'
 import {store} from '../../store'
 
 function func() {
@@ -19,6 +20,7 @@ function Login() {
     const dispatch = useDispatch()
     const userName = useSelector(selectUserName)
     const password = useSelector(selectPassword)
+    const sessionUserName = useSelector(selectSessionUserName)
 
     function handleLoginSubmit(e)  {
         // 阻止事件的默认行为
@@ -34,9 +36,9 @@ function Login() {
             password: password
         }).then(response => {
             console.log("return login:", response.data)
-            dispatch(setUserName(response.data.userName))
+            dispatch(setSessionUserName(response.data.userName))
         }).catch((error) => {
-            dispatch(setUserName('Account'))
+            dispatch(setSessionUserName('Account'))
             console.log("return login error", error)
         })
         
