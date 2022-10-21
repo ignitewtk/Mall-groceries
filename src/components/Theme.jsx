@@ -5,7 +5,9 @@ import { Col, Row, Input, Menu, Pagination, BackTop} from 'antd'
 import { Outlet, Link } from 'react-router-dom'
 
 import Banner from "./Banner";
-import CartSider from "./cart/CartSider";
+import CartSider from "./cart/CartSider"
+import {store} from '../store'
+// import {connect} from 'react-redux'
 
 const {Search} = Input;
 
@@ -25,7 +27,7 @@ class Theme extends React.Component {
     })
   }
 
-
+  
 
   render() {
     const menuItems = [
@@ -87,12 +89,17 @@ class ThemeHeader extends React.Component {
     super(props)
     this.showCart = this.showCart.bind(this)
     this.state = {
+      userName: 'Account',
       cartShowed: props.cartShowed
     }
   }
-
+  // componentDidMount() {
+  //   this.setState({
+  //     userName: store.getState().account.userName
+  //   })
+  // }
   showCart () {
-    
+    // console.log(store.getState().account.userName)
     this.setState(
       {
         cartShowed: !this.state.cartShowed
@@ -111,7 +118,7 @@ class ThemeHeader extends React.Component {
           <Col span={2}>  </Col>
           <Col span={2}> <EnvironmentOutlined /> Location </Col>
           <Col span={2}> <Link to='login'> Login </Link> </Col>
-          <Col span={2}> <Link to='profile'> Account </Link> </Col>
+        <Col span={2}> <Link to='profile'> {store.getState().account.userName} </Link> </Col>
 
           <Col span={2}> 
           <span onClick={this.showCart}> <ShoppingCartOutlined /> Cart  </span>  

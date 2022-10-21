@@ -14,7 +14,7 @@ import ajax from './ajax'
     }
     return: Promise object
 */
-export const reqLogin = (username, password) => ajax('/customer/login', {username, password}, 'POST')
+export const reqLogin = (param) => ajax('/customer/login', param, 'POST')
 
 
 /* Register
@@ -25,7 +25,7 @@ export const reqLogin = (username, password) => ajax('/customer/login', {usernam
     }
     return: Promise object
 */
-// export const reqRegister = (username, passowrd, email) => ajax('/register', {username, passowrd, email}, 'POST')
+export const reqRegister = (param) => ajax('/customer/register', param, 'POST')
 
 
 /* Get profile image

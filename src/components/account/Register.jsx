@@ -5,20 +5,21 @@ import {UserOutlined, LockOutlined, MailOutlined} from '@ant-design/icons'
 import './login.css'
 import authGoogle from './auth'
 import { googleSignout } from './auth'
-import { reqLogin } from '../../api'
+import { reqRegister } from '../../api'
 import  { useSelector, useDispatch } from 'react-redux'
 import { setUserName, setPassword, setEmail, selectUserName, selectPassword, selectEmail } from '../../redux/accountSlice'
-import {store} from '../../store'
+
 
 function func() {
     console.log('testtest')
 }
 
-function Login() {
+function Register() {
 
     const dispatch = useDispatch()
     const userName = useSelector(selectUserName)
     const password = useSelector(selectPassword)
+    const email = useSelector(selectEmail)
 
     function handleLoginSubmit(e)  {
         // 阻止事件的默认行为
@@ -26,18 +27,17 @@ function Login() {
         // const form = this.props.form
         // const values = form.getFieldsValues()
         // dispatch(setLogin({userName, password}))
-        console.log(userName, password)
-        reqLogin({
-            // userName: 'customer1',
-            // password: 'customer1'
+        reqRegister({
+            // userName: 'customer3',
+            // password: 'customer3',
+            // email: 'customer3'
             userName: userName,
-            password: password
+            password: password,
+            email: email
         }).then(response => {
-            console.log("return login:", response.data)
-            dispatch(setUserName(response.data.userName))
+            console.log("return register:", response.data)
         }).catch((error) => {
-            dispatch(setUserName('Account'))
-            console.log("return login error", error)
+            console.log("return register error", error)
         })
         
         // alert("you click");
@@ -68,7 +68,6 @@ function Login() {
             
         }
     }
-
     return (
     <div className="login" style={{height:"60vh"}}> 
             {/* <header className="login-header">
@@ -76,7 +75,7 @@ function Login() {
             <h1> Onsys Message System </h1>
             </header> */}
             <section className="login-content">
-            <h2> {userName?userName:'Login'} </h2>
+            <h2> Register </h2>
             
             <Form 
                 // onFinish={handleLoginSubmit} 
@@ -116,7 +115,8 @@ function Login() {
                     <Input prefix={<MailOutlined />} placeholder="Email"></Input>
                 </Form.Item>
                 <Form.Item>
-                    <Button onClick={handleLoginSubmit} type="primary" htmlType='submit' className='login-form-button'>Sign In</Button>
+                    <Button onClick={handleLoginSubmit} 
+                        type="primary" htmlType='submit' className='login-form-button'>Sign Up</Button>
                 </Form.Item>
             </Form>
 
@@ -135,4 +135,4 @@ function Login() {
 }
 
 
-export default Login;
+export default Register;
