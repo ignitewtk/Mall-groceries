@@ -47,7 +47,7 @@ export const reqGetProfileImage = (param) => ajax('/customer/profileImage', para
     url: '/product/list'      
     param: {
         categories: <string>,
-        rating: <int>,
+        rating: <double>,
         price: <double>,
     }
     return: Promise object with a list of products' data. 

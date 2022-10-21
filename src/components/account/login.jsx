@@ -35,11 +35,15 @@ function Login() {
             userName: userName,
             password: password
         }).then(response => {
-            console.log("return login:", response.data)
-            dispatch(setSessionUserName(response.data.userName))
+            console.log(response.data)
+            if (response.data.status === 'success') {
+                dispatch(setSessionUserName(response.data.data.userName))
+            } else {
+                dispatch(setSessionUserName('Account'))
+            }
         }).catch((error) => {
-            dispatch(setSessionUserName('Account'))
-            console.log("return login error", error)
+            dispatch(setSessionUserName('Account (Failed)'))
+            console.log(error)
         })
         
         // alert("you click");

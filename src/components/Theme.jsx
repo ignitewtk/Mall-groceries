@@ -6,7 +6,7 @@ import { Outlet, Link } from 'react-router-dom'
 
 import Banner from "./Banner";
 import CartSider from "./cart/CartSider"
-import {store} from '../store'
+import {store, mapDispatchToProps, mapStateToProps} from '../store'
 import {connect} from 'react-redux'
 
 const {Search} = Input;
@@ -81,19 +81,19 @@ class Theme extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-      sendAction: () => {
-        dispatch({
-          type: "add_action"
-        })
-      }
-    }
-}
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//       sendAction: () => {
+//         dispatch({
+//           type: "add_action"
+//         })
+//       }
+//     }
+// }
 
-const mapStateToProps = (state) => {
-  return {state}
-}
+// const mapStateToProps = (state) => {
+//   return {state}
+// }
 
 
 class ThemeHeader extends React.Component {

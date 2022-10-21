@@ -28,7 +28,7 @@ class Product extends React.Component {
                 originPrice: 2,
                 discountPrice: 1.5,
                 rating: 3,
-                img: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
+                src: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
             }
         }
         this.reqImage = this.reqImage.bind(this)
@@ -46,7 +46,7 @@ class Product extends React.Component {
     render() {
         return (
             <div style={{wdith:"300px", height:"400px", display:"inline", margin: "20px 10px"}}>
-                <Image width={200} height={200} src={this.productDetail.img} />
+                <Image width={200} height={200} src={this.productDetail.src} />
                 <div onClick={this.reqImage}>  {this.productDetail.name} </div>
                 <div> Description </div>
                 <div> Sales </div>

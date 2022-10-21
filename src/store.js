@@ -11,3 +11,16 @@ export const store = configureStore({
 
 
 
+export const mapDispatchToProps = (dispatch) => {
+    return {
+      sendAction: () => {
+        dispatch({
+          type: "add_action"
+        })
+      }
+    }
+}
+
+export const mapStateToProps = (state) => {
+  return {state}
+}

@@ -7,8 +7,11 @@ import products from './config/products'
 import { reqGetProductList, reqGetImage } from "../../api";
 import  { useSelector, useDispatch } from 'react-redux'
 import { applyFilters, selectFilters, selectCategory, selectRating, selectPrice, 
-    displayImage, selectDisplayedImage } from '../../redux/productSlice'
+    displayImage, selectDisplayedImage, 
+    setProductList, selectProductList } from '../../redux/productSlice'
 
+import {store, mapDispatchToProps, mapStateToProps} from '../../store'
+import {connect} from 'react-redux'
 
 const {Option} = Select
 const {Search} = Input;
@@ -21,6 +24,7 @@ function ControlPanel() {
     const rating = useSelector(selectRating)
     const price = useSelector(selectPrice)
     const displayedImage = useSelector(selectDisplayedImage)
+    const productList = useSelector(selectProductList)
 
     function getBase64(img) {
         const base64Url = `data:image/jpg;base64, ${window.btoa(
@@ -33,23 +37,22 @@ function ControlPanel() {
 
     function submitFilter() {
         const newParam = {
-            category: 'veges',
-            rating: 3,
-            price: 10
+            category: 'All',
+            rating: 0,
+            price: 0
         }
         // update filter param state
         dispatch(applyFilters(newParam))
         
         // send request to backend and update product list
         reqGetProductList(newParam).then(response =>  {
-            console.log("return product list:", response.data)
+            dispatch(setProductList(response.data))
         }).catch(error => {
             console.log("return product list error:", error)
         })
 
         let productName = "Tomatoes.jpg"
         reqGetImage({productName: productName}).then(response =>  {
-            console.log("return displayed image:", response)
             dispatch(displayImage(response.data))
         }).catch(error => {
             console.log("return displayed image error:", error)
@@ -140,6 +143,16 @@ class ProductList extends React.Component {
                 <Col span={6}> <ControlPanel /> </Col> 
                 <Col span={18}>
                     <Row>
+                        
+                        {
+                            // console.log(store.getState().product.productList)
+                            store.getState().product.productList.map(item => (
+                                <Product key={item.name} productDetail={item} src={item.src} />
+                            ))
+                        }
+
+                    </Row>
+                    { /* <Row>
                         {
                             products.map(item => (
                                 <Product key={item.name} productDetail={item}/>
@@ -177,9 +190,7 @@ class ProductList extends React.Component {
                     </Row>
                     <Row>
                         <Col span={8}><Product /></Col>
-                        {/* <Col span={8}><Product /></Col>
-                        <Col span={8}><Product /></Col> */}
-                    </Row>
+                    </Row> */}
                     <Row>
                     <Pagination 
                         total={12}
@@ -194,5 +205,5 @@ class ProductList extends React.Component {
     }
 }
 
-
-export default ProductList;
+// export default ProductList;
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
