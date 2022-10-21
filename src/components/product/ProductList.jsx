@@ -4,7 +4,7 @@ import Product from "./Product";
 import { Image, Button, Pagination,  Select, Row, Col, Checkbox, Input } from 'antd'
 
 import products from './config/products'
-import { reqGetProducts, reqGetImage } from "../../api";
+import { reqGetProductList, reqGetImage } from "../../api";
 import  { useSelector, useDispatch } from 'react-redux'
 import { applyFilters, selectFilters, selectCategory, selectRating, selectPrice, 
     displayImage, selectDisplayedImage } from '../../redux/productSlice'
@@ -41,7 +41,7 @@ function ControlPanel() {
         dispatch(applyFilters(newParam))
         
         // send request to backend and update product list
-        reqGetProducts(newParam).then(response =>  {
+        reqGetProductList(newParam).then(response =>  {
             console.log("return product list:", response.data)
         }).catch(error => {
             console.log("return product list error:", error)
@@ -67,15 +67,7 @@ function ControlPanel() {
                 />
 
             <div> <span> {displayedImage} </span></div>
-            <Row> <Button onClick={submitFilter
-                // () => {
-                //     dispatch(applyFilters({
-                //         category: 'veges',
-                //         rating: 3,
-                //         price: 10
-                //     }))
-                // }
-            } type="primary"> Apply Filters </Button> </Row> 
+            <Row> <Button onClick={submitFilter} type="primary"> Apply Filters </Button> </Row> 
             <Row> <Search placeholder="Search"/> </Row>
             <Row> <span> {category} and {rating} and {price} </span></Row>
             <Row>

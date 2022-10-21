@@ -5,7 +5,7 @@ import { Col, Row, Input, Menu, Pagination, BackTop} from 'antd'
 import { Outlet, Link } from 'react-router-dom'
 
 import Banner from "./Banner";
-import CartSider from "./CartSider";
+import CartSider from "./cart/CartSider";
 
 const {Search} = Input;
 
@@ -127,7 +127,11 @@ class ThemeHeader extends React.Component {
 class About extends React.Component {
   render() {
     return (
-      <Row style={{"margin":"20px 0", "padding":"50px 100px", "backgroundColor":"#C7E5B7"}}>
+      <Row style={{
+          "margin":"20px 0", "padding":"50px 100px", 
+          "position": "relative",
+          "bottom": 0,
+          "backgroundColor":"#C7E5B7"}}>
         <Col span={3}></Col>
         <Col span={6}>
           <Row> OFFICIAL SITE </Row>

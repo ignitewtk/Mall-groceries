@@ -1,7 +1,7 @@
 import './login.css'
 
 import React, { Component, useRef, useState } from 'react'
-import {Form, Input, Button, Checkbox} from 'antd'
+import {Form, Input, Button, Checkbox, Row, Col} from 'antd'
 import {UserOutlined, LockOutlined, MailOutlined} from '@ant-design/icons'
 // import './login.less'
 
@@ -53,35 +53,54 @@ function UserProfile()  {
     
 
     return (
-    <div style={{height:"60vh"}}> 
-
-            <section>
-            <h2> User Profile </h2>
-            
-            <div> File Upload </div>
-            <form action="" method="post" encType="multipart/form-data">
-                <div> 
-                    <input style={{height:"100px", width:"200px", borderStyle:"solid"}} 
-                        onChange={uploadFile}
-                        type="file" />
-                </div>
+    <div style={{height:"60vh", padding:"10px 20px"}}> 
+        <h2 style={{textAlign:"center"}}> User profile </h2>
+        <Row>
+            <Col span={1} />
+            <Col span={4}>
                 
-            </form>
-            <button onClick={() => {
-                console.log("-----------", uploadFiles)
-                submitFile('logo.jpg')
-            }}> Submit </button>
-            {
-                // if uploadFiles has value, render the <img>, else do not render
-                uploadFiles &&
-                <img 
-                    src={URL.createObjectURL(uploadFiles)}
-                />
-            }
-
-            <img src={imgSrc}/>
-            </section>
-    </div>)
+                <section>
+                    <h3> Personal Information </h3>
+                    
+                    <div> File Upload </div>
+                    <form action="" method="post" encType="multipart/form-data">
+                        <div> 
+                            <input style={{height:"100px", width:"200px", borderStyle:"solid"}} 
+                                onChange={uploadFile}
+                                type="file" />
+                        </div>
+                        
+                    </form>
+                    <button onClick={() => {
+                        console.log("-----------", uploadFiles)
+                        submitFile('logo.jpg')
+                    }}> Submit </button>
+                    {
+                        // if uploadFiles has value, render the <img>, else do not render
+                        uploadFiles &&
+                        <img 
+                            src={URL.createObjectURL(uploadFiles)}
+                        />
+                    }
+                    <img src={imgSrc}/>
+                    
+                </section>
+            </Col>
+            <Col span={4} />
+            <Col span={4}>
+                <section>
+                    <h3> Orders </h3>
+                </section>
+                <section>
+                    <h3> Payments </h3>
+                </section>
+                <section>
+                    <h3> Login & Security </h3>
+                </section>
+            </Col>
+        </Row>
+    </div>
+    )
     
 }
 

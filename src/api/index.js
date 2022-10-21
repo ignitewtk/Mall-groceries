@@ -14,9 +14,10 @@ import ajax from './ajax'
     }
     return: Promise object
 */
-export const reqLogin = (username, password) => ajax('/login', {username, password}, 'POST')
+export const reqLogin = (username, password) => ajax('/customer/login', {username, password}, 'POST')
 
-/* Login
+
+/* Register
     param: {
         username: <string>,
         password: <string>,
@@ -24,11 +25,7 @@ export const reqLogin = (username, password) => ajax('/login', {username, passwo
     }
     return: Promise object
 */
-export const reqRegister = (username, passowrd, email) => ajax('/register', {username, passowrd, email}, 'POST')
-
-
-// Add users
-export const reqAddUser = (user) => ajax('/users/add', user, 'POST')
+// export const reqRegister = (username, passowrd, email) => ajax('/register', {username, passowrd, email}, 'POST')
 
 
 /* Get profile image
@@ -41,10 +38,11 @@ export const reqAddUser = (user) => ajax('/users/add', user, 'POST')
         url: <string> the image URL on server
     }
 */
-export const reqGetProfileImage = (param) => ajax('/account/profileImage', param, 'POST')
+export const reqGetProfileImage = (param) => ajax('/customer/profileImage', param, 'POST')
 
 
 
+// Product
 /* Get product list
     url: '/product/list'      
     param: {
@@ -67,7 +65,7 @@ export const reqGetProfileImage = (param) => ajax('/account/profileImage', param
         ]
     }
 */
-export const reqGetProducts = (param) => ajax('/product/list', param, 'POST')
+export const reqGetProductList = (param) => ajax('/product/list', param, 'POST')
 
 export const reqGetImage = (param) => ajax('/product/image', param, 'POST')
 
