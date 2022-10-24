@@ -4,7 +4,7 @@
 
 import ajax from './ajax'
 
-
+var BASE = '/api'
 // Account
 
 /* Login
@@ -14,7 +14,7 @@ import ajax from './ajax'
     }
     return: Promise object
 */
-export const reqLogin = (param) => ajax('/customer/login', param, 'POST')
+export const reqLogin = (param) => ajax(BASE + '/customer/login', param, 'POST')
 
 
 /* Register
@@ -25,7 +25,7 @@ export const reqLogin = (param) => ajax('/customer/login', param, 'POST')
     }
     return: Promise object
 */
-export const reqRegister = (param) => ajax('/customer/register', param, 'POST')
+export const reqRegister = (param) => ajax(BASE + '/customer/register', param, 'POST')
 
 
 /* Get profile image
@@ -38,7 +38,7 @@ export const reqRegister = (param) => ajax('/customer/register', param, 'POST')
         url: <string> the image URL on server
     }
 */
-export const reqGetProfileImage = (param) => ajax('/customer/profileImage', param, 'POST')
+export const reqGetProfileImage = (param) => ajax(BASE + '/customer/profileImage', param, 'POST')
 
 
 
@@ -68,6 +68,8 @@ export const reqGetProfileImage = (param) => ajax('/customer/profileImage', para
 export const reqGetProductList = (param) => ajax('/product/list', param, 'POST')
 
 export const reqGetImage = (param) => ajax('/product/image', param, 'POST')
+
+export const reqGetList = () => ajax('/product/plist', {}, 'GET')
 
 
 // Upload file

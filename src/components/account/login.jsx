@@ -7,6 +7,7 @@ import authGoogle from './auth'
 import { googleSignout } from './auth'
 import { reqLogin } from '../../api'
 import  { useSelector, useDispatch } from 'react-redux'
+import { redirect } from 'react-router-dom'
 import { setSessionUserName, setUserName, setPassword, setEmail, 
     selectSessionUserName, selectUserName, selectPassword, selectEmail } from '../../redux/accountSlice'
 import {store} from '../../store'
@@ -28,7 +29,6 @@ function Login() {
         // const form = this.props.form
         // const values = form.getFieldsValues()
         // dispatch(setLogin({userName, password}))
-        console.log(userName, password)
         reqLogin({
             // userName: 'customer1',
             // password: 'customer1'
@@ -41,6 +41,7 @@ function Login() {
             } else {
                 dispatch(setSessionUserName('Account'))
             }
+            // window.location.href="/";  // the account state is not saved
         }).catch((error) => {
             dispatch(setSessionUserName('Account (Failed)'))
             console.log(error)

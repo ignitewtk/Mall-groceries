@@ -1,58 +1,61 @@
 import React from "react";
 import { Row, Col, Button } from 'antd'
-import './Cart.css';
+import  { useSelector, useDispatch } from 'react-redux'
+import { addOneToCount, addItem, deleteItem, selectCartList, selectCount } from '../../redux/cartSlice'
 import CartItem from "./CartItem";
 
-class CartSider extends React.Component {
-    constructor(props) {
-        super(props)
-        this.CartProducts = [
-            {
-                productName: "Product 1",
-                price: 20,
-                count: 3,
-            },
-            {
-                productName: "Product 2",
-                price: 30,
-                count: 3,
-            },
-            {
-                productName: "Product 3",
-                price: 40,
-                count: 3,
-            },
-        ]
-    }
-    render () {
-        return (
-            <div>
-                <nav className={this.props.cartShowed? 'nav-menu active': 'nav-menu'}>
-                    <div onClick={this.props.changeCartShowed}> 
-                        <Button> Close </Button> 
-                    </div>
-                    <div> Total price: </div>
-                    <div>
-                        <ul>
-                            {this.CartProducts.map((item) => {
-                                return (
+import './Cart.css';
+import { CartProducts } from './dataCart'
 
-                                    <li key={item.productName}> 
-                                        <CartItem productName={item.productName} price={item.price} count={item.count}/>
-                                        {/* <span> {item.productName}: {item.price}  </span> */}
-                                    </li>
-                                )
-                                
-                            })}
-                        </ul>
-                    </div>
-                    <Button> Checkout </Button> 
-                </nav>
-            </div>
-            
-        )
+
+function CartSider(props) {
+
+    const dispatch = useDispatch()
+    const cartList = useSelector(selectCartList)
+    const count = useSelector(selectCount)
+
+
+    return (
+        <div>
+            <nav className={props.cartShowed? 'nav-menu active': 'nav-menu'}>
+                <div onClick={props.changeCartShowed}> 
+                    <Button> Close </Button> 
+                </div>
+                
+                <div>
+                    <ul 
+                        style={{
+                            listStyleType: "none",
+                            paddingInlineStart: "0px",
+                            overflowY: "scroll", 
+                            overflowX: "hidden", 
+                            height: "550px",
+                            width: "250px"
+                            }}>
+                        {cartList.map((item) => {
+                            return (
+                                <li key={item.productName}> 
+                                    <CartItem productName={item.productName} price={item.price} count={item.count}/>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
+                <div style={{
+                    "margin":"10px 0", "padding":"0px 0px", 
+                    "position": "fixed",
+                    "bottom": 0,}}>
+                        <div> Total price: </div>
+                        <div> Total Count: {count} </div>
+                        <Button onClick={()=>{dispatch(addOneToCount())}}> Checkout </Button> 
+                </div>
+                
+            </nav>
+        </div>
         
-    }
+    )
+    
+
 }
 
 export default CartSider

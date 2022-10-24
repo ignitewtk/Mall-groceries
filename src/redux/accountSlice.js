@@ -12,27 +12,27 @@ export const accountSlice = createSlice({
     },
     reducers: {
         setSessionUserName: (state, action) => {
-            console.log("(accountSlice.js/setSessionUserName): ", action.payload)
+            // console.log("(accountSlice.js/setSessionUserName): ", action.payload)
             state.sessionUserName = action.payload
         },
         setUserName: (state, action) => {
-            console.log("(accountSlice.js/setUserName): ", action.payload)
+            // console.log("(accountSlice.js/setUserName): ", action.payload)
             state.userName = action.payload
         },
         setPassword: (state, action) => {
-            console.log("(accountSlice.js/setPassword): ", action.payload)
+            // console.log("(accountSlice.js/setPassword): ", action.payload)
             state.password = action.payload
         },
         setEmail: (state, action) => {
-            console.log("(accountSlice.js/setEmail): ", action.payload)
+            // console.log("(accountSlice.js/setEmail): ", action.payload)
             state.email = action.payload
         },
         setUploadFile: (state, action) => {
-            console.log("(accountSlice.js/setUploadFile): ", action.payload)
+            // console.log("(accountSlice.js/setUploadFile): ", action.payload)
             state.uploadFiles = action.payload
         },
         setProfileImageSrc: (state, action) => {
-            console.log("(accountSlice.js/setProfileImageSrc): ", action.payload)
+            // console.log("(accountSlice.js/setProfileImageSrc): ", action.payload)
             state.profileImageSrc = action.payload
         },
     }

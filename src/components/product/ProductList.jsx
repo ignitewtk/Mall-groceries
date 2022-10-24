@@ -4,7 +4,7 @@ import Product from "./Product";
 import { Image, Button, Pagination,  Select, Row, Col, Checkbox, Input } from 'antd'
 
 import products from './config/products'
-import { reqGetProductList, reqGetImage } from "../../api";
+import { reqGetList, reqGetProductList, reqGetImage } from "../../api";
 import  { useSelector, useDispatch } from 'react-redux'
 import { applyFilters, selectFilters, selectCategory, selectRating, selectPrice, 
     displayImage, selectDisplayedImage, 
@@ -26,15 +26,6 @@ function ControlPanel() {
     const displayedImage = useSelector(selectDisplayedImage)
     const productList = useSelector(selectProductList)
 
-    function getBase64(img) {
-        const base64Url = `data:image/jpg;base64, ${window.btoa(
-            new Uint8Array(img).reduce(
-                (data, byte) => data + String.fromCharCode(byte), ""
-            )
-        )}`
-        return base64Url
-    }
-
     function submitFilter() {
         const newParam = {
             category: 'All',
@@ -47,6 +38,7 @@ function ControlPanel() {
         // send request to backend and update product list
         reqGetProductList(newParam).then(response =>  {
             dispatch(setProductList(response.data))
+            // console.log(productList)
         }).catch(error => {
             console.log("return product list error:", error)
         })
@@ -57,14 +49,19 @@ function ControlPanel() {
         }).catch(error => {
             console.log("return displayed image error:", error)
         })
-    }
 
+        reqGetList().then(response =>  {
+            console.log("return list:", response.data)
+        }).catch(error => {
+            console.log("return list error:", error)
+        })
+    }
 
 
     return (
         <div style={{"padding":"30px 0px 0px 30px"}}>
             
-            <Image width={200} height={200} 
+            <Image width={200} height={200} style={{margin:"0px"}}
                 // referrer="no-referrer|origin|unsafe-url" 
                 src={displayedImage} 
                 />
