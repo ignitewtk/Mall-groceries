@@ -1,6 +1,6 @@
 # E-commerce Online Shopping Platform
 
-This is an online shopping website. 
+This is an online shopping system. 
 
 ## Features
 
@@ -11,14 +11,14 @@ The platform covers serveral modules including:
 
 ## Skill Stacks
 
-The system uses React as front-end framework, combined with Redux for state management. 
+The system uses _React_ as front-end framework, combined with Redux for state management. 
 
-The system is configured with Nginx for load balance and as proxy for passing cross-field requests.
+The system is configured with _Nginx_ for load balance and as proxy for passing cross-field requests.
 
-The system is containerised and can be run on Docker.
+The system is containerised and can be run on _Docker_.
 
 
-``Tools`` React, Redux, Ajax, Javascript, CSS, HTML, Docker, Nginx, Ant Design UI components.
+``Tools`` _React, Redux, Ajax, Javascript, CSS, HTML, Docker, Nginx, Ant Design UI components_.
 
 ## Run locally
 
