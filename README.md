@@ -18,7 +18,7 @@ Tools: React, Redux, Ajax, Javascript, CSS, HTML, Docker, Nginx, Ant Design UI c
 ## Run locally
 
 
-The platform can be run with or without a backend service. If you need to run with backend service, please install backend project from [https://github.com/ignitewtk/Web-1-CMS-Groceries-1.0/tree/master/backend] and start it following by the instruction.
+The platform can be run with or without a backend service. If you need to run with backend service, please install backend project from [https://github.com/ignitewtk/Web-1-CMS-Groceries-1.0/tree/master/backend](https://github.com/ignitewtk/Web-1-CMS-Groceries-1.0/tree/master/backend) and start it following by the instruction.
 
 
 #### Run on Docker
@@ -33,7 +33,7 @@ Build the container from the image and start it:
 ```
 docker run mall
 ```
-Finally, use [http://localhost:3000] to access to the website.
+Finally, use [http://localhost:3000](http://localhost:3000) to access to the website.
 
 Stop the container:
 ```
@@ -55,7 +55,7 @@ Then, run the project in development mode:
 ```
 npm start
 ```
-Finally, use [http://localhost:3000] on a browser to access to the website.
+Finally, use [http://localhost:3000](http://localhost:3000) on a browser to access to the website.
 
 ## Documentation
 
