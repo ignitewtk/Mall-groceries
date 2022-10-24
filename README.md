@@ -5,15 +5,20 @@ This is an online shopping website.
 ## Features
 
 The platform covers serveral modules including: 
-- ``Customer`` : account management such as sign in, sign up, and profile image uploading.
-- ``Product`` : prodcut list disaply, reordering and filtering products.
-- ``Ordering and Shopping Cart`` : adding or removing items, displaying cart items.
+- ``Customer``  account management such as sign in, sign up, and profile image uploading.
+- ``Product``  prodcut list disaply, reordering and filtering products.
+- ``Ordering and Shopping Cart``  adding or removing items, displaying cart items.
 
 ## Skill Stacks
 
 The system uses React as front-end framework, combined with Redux for state management. 
 
-Tools: React, Redux, Ajax, Javascript, CSS, HTML, Docker, Nginx, Ant Design UI components.
+The system is configured with Nginx for load balance and as proxy for passing cross-field requests.
+
+The system is containerised and can be run on Docker.
+
+
+``Tools`` React, Redux, Ajax, Javascript, CSS, HTML, Docker, Nginx, Ant Design UI components.
 
 ## Run locally
 
