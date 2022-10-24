@@ -5,99 +5,66 @@ This is an online shopping website.
 ## Features
 
 The platform covers serveral modules including: 
-- Customer module: account management such as sign in, sign up, and profile image uploading.
-- Product modeule: prodcut list disaply, reordering and filtering products.
-- Ordering and Shopping Cart module: adding or removing items, displaying cart items.
+- ``Customer`` : account management such as sign in, sign up, and profile image uploading.
+- ``Product`` : prodcut list disaply, reordering and filtering products.
+- ``Ordering and Shopping Cart`` : adding or removing items, displaying cart items.
 
 ## Skill Stacks
 
 The system uses React as front-end framework, combined with Redux for state management. 
 
+Tools: React, Redux, Ajax, Javascript, CSS, HTML, Docker, Nginx, Ant Design UI components.
 
 ## Run locally
 
-After clone the project, install all dependencies: 
 
+The platform can be run with or without a backend service. If you need to run with backend service, please install backend project from [https://github.com/ignitewtk/Web-1-CMS-Groceries-1.0/tree/master/backend] and start it following by the instruction.
+
+
+#### Run on Docker
+
+Install Docker on your system, or run it on a cloud server with docker installed.
+
+Enter the project root directory, and run following command to build the image in command line:
+```
+docker build ./ -t mall
+```
+Build the container from the image and start it: 
+```
+docker run mall
+```
+Finally, use [http://localhost:3000] to access to the website.
+
+Stop the container:
+```
+docker stop mall
+```
+Restart the container next time:
+```
+docker start mall
+```
+
+#### Run in development mode
+
+After clone the project, install all dependencies: 
 ```
 npm install
 ```
+Then, run the project in development mode:
 
-Run the project in development mode:
-
-``
+```
 npm start
-``
+```
+Finally, use [http://localhost:3000] on a browser to access to the website.
 
-Use [http://localhost:3000] to access to the website.
+## Documentation
 
+To be added.
 
-# Getting Started with Create React App
+## License
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To be added.
 
-## Available Scripts
+## Contact 
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+To be added.
