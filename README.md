@@ -1,3 +1,36 @@
+# E-commerce Online Shopping Platform
+
+This is an online shopping website. 
+
+## Features
+
+The platform covers serveral modules including: 
+- Customer module: account management such as sign in, sign up, and profile image uploading.
+- Product modeule: prodcut list disaply, reordering and filtering products.
+- Ordering and Shopping Cart module: adding or removing items, displaying cart items.
+
+## Skill Stacks
+
+The system uses React as front-end framework, combined with Redux for state management. 
+
+
+## Run locally
+
+After clone the project, install all dependencies: 
+
+```
+npm install
+```
+
+Run the project in development mode:
+
+``
+npm start
+``
+
+Use [http://localhost:3000] to access to the website.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
