@@ -37,6 +37,7 @@ function ControlPanel() {
         
         // send request to backend and update product list
         reqGetProductList(newParam).then(response =>  {
+            console.log("Product List:", response.data)
             dispatch(setProductList(response.data))
             // console.log(productList)
         }).catch(error => {
@@ -50,11 +51,11 @@ function ControlPanel() {
             console.log("return displayed image error:", error)
         })
 
-        reqGetList().then(response =>  {
-            console.log("return list:", response.data)
-        }).catch(error => {
-            console.log("return list error:", error)
-        })
+        // reqGetList().then(response =>  {
+        //     console.log("return list:", response.data)
+        // }).catch(error => {
+        //     console.log("return list error:", error)
+        // })
     }
 
 
@@ -136,58 +137,17 @@ class ProductList extends React.Component {
     render () {
         return (
             <Row>
-                
                 <Col span={6}> <ControlPanel /> </Col> 
                 <Col span={18}>
                     <Row>
-                        
                         {
                             // console.log(store.getState().product.productList)
                             store.getState().product.productList.map(item => (
-                                <Product key={item.name} productDetail={item} src={item.src} />
-                            ))
-                        }
-
-                    </Row>
-                    { /* <Row>
-                        {
-                            products.map(item => (
-                                <Product key={item.name} productDetail={item}/>
-                            ))
-                        }
+                                <Product key={item.productName} productDetail={item} src={item.src} />
+                            ))}
                     </Row>
                     <Row>
-                        <Product key="pork" productDetail={
-                            {
-                                name: "Pork Loin",
-                                originPrice: 10.56,
-                                discountPrice: 8.99,
-                                rating: 3,
-                                img: require("./img/PorkLoin.jpg"),
-                            }
-                        }/>
-                        <Product key="Asian Baby Bulk Choy" productDetail={
-                            {
-                                name: "Asian Baby Bulk Choy",
-                                originPrice: 2.99,
-                                discountPrice: 2.5,
-                                rating: 4,
-                                img: require("./img/Asian Baby Bulk Choy.jpg"),
-                            }
-                        }/>
-                        <Product key="Fresh Eggs" productDetail={
-                            {
-                                name: "Fresh Eggs",
-                                originPrice: 7.88,
-                                discountPrice: 6.99,
-                                rating: 5,
-                                img: require("./img/Fresh Eggs.jpg"),
-                            }
-                        }/>
-                    </Row>
-                    */}
-                    <Row>
-                        <Col span={8}><Product /></Col>
+                        <Col span={8}><Product/></Col>
                     </Row> 
                     <Row>
                     <Pagination 

@@ -97,7 +97,6 @@ class Theme extends React.Component {
 
 
 class ThemeHeader extends React.Component {
-
   constructor(props) {
     super(props)
     this.showCart = this.showCart.bind(this)
@@ -125,7 +124,7 @@ class ThemeHeader extends React.Component {
     return (
       <div style={{"padding":"20px 20px", "backgroundColor":"#C7E5B7"}}>
         <Row >
-          <Col span={4}> <Link to="main"> LOGO </Link> </Col>
+          <Col span={4}> <Link to="main"> Ahahaha </Link> </Col>
           <Col span={6}>  </Col>
           <Col span={4}> <Search placeholder="Search"/>  </Col>
           <Col span={2}>  </Col>

@@ -9,6 +9,10 @@ The platform covers serveral modules including:
 - ``Product``  prodcut list disaply, reordering and filtering products.
 - ``Ordering and Shopping Cart``  adding or removing items, displaying cart items.
 
+## Demo Website
+
+To be added.
+
 ## Skill Stacks
 
 The system uses _React_ as front-end framework, combined with Redux for state management. 
@@ -18,7 +22,7 @@ The system is configured with _Nginx_ for load balance and as proxy for passing 
 The system is containerised and can be run on _Docker_.
 
 
-``Tools`` _React, Redux, Ajax, Javascript, CSS, HTML, Docker, Nginx, Ant Design UI components_.
+``Tools`` _React, Redux, Ajax, Axios, Javascript, CSS, HTML, Docker, Nginx, Ant Design_ UI components.
 
 ## Run locally
 

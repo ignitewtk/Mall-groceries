@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col, Button } from 'antd'
 import  { useSelector, useDispatch } from 'react-redux'
-import { addOneToCount, addItem, deleteItem, selectCartList, selectCount } from '../../redux/cartSlice'
+import { addOneToCount, addItem, deleteItem, selectCartList, selectCount, selectTotalPrice } from '../../redux/cartSlice'
 import CartItem from "./CartItem";
 
 import './Cart.css';
@@ -13,6 +13,7 @@ function CartSider(props) {
     const dispatch = useDispatch()
     const cartList = useSelector(selectCartList)
     const count = useSelector(selectCount)
+    const totalPrice = useSelector(selectTotalPrice)
 
 
     return (
@@ -35,7 +36,7 @@ function CartSider(props) {
                         {cartList.map((item) => {
                             return (
                                 <li key={item.productName}> 
-                                    <CartItem productName={item.productName} price={item.price} count={item.count}/>
+                                    <CartItem productName={item.productName} price={item.price} count={item.count} src={item.src}/>
                                 </li>
                             )
                         })}
@@ -45,8 +46,8 @@ function CartSider(props) {
                     "margin":"10px 0", "padding":"0px 0px", 
                     "position": "fixed",
                     "bottom": 0,}}>
-                        <div> Total price: </div>
-                        <div> Total Count: {count} </div>
+                        <div> Total price: {totalPrice}</div>
+                        {/* <div> Total Count: {count} </div> */}
                         <Button onClick={()=>{dispatch(addOneToCount())}}> Checkout </Button> 
                 </div>
                 

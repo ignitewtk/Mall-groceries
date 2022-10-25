@@ -4,7 +4,7 @@
 
 import ajax from './ajax'
 
-var BASE = '/api'
+var BASE = ''
 // Account
 
 /* Login
@@ -55,7 +55,7 @@ export const reqGetProfileImage = (param) => ajax(BASE + '/customer/profileImage
         data: [
             ...
             {
-                name: <string>,
+                productName: <string>,
                 category: <string>,
                 originPrice: <double>,
                 discountPrice: <double>,
@@ -65,11 +65,11 @@ export const reqGetProfileImage = (param) => ajax(BASE + '/customer/profileImage
         ]
     }
 */
-export const reqGetProductList = (param) => ajax('/product/list', param, 'POST')
+export const reqGetProductList = (param) => ajax(BASE + '/product/list', param, 'POST')
 
-export const reqGetImage = (param) => ajax('/product/image', param, 'POST')
+export const reqGetImage = (param) => ajax(BASE + '/product/image', param, 'POST')
 
-export const reqGetList = () => ajax('/product/plist', {}, 'GET')
+export const reqGetList = () => ajax(BASE + '/product/plist', {}, 'GET')
 
 
 // Upload file

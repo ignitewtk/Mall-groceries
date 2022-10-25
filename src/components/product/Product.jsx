@@ -1,75 +1,83 @@
 
 import React from "react"
-import { Rate, Collapse, Image} from 'antd'
+import { Rate, Collapse, Image, Button } from 'antd'
 import { reqGetImage } from "../../api"
+import { addItem, deleteItem, selectCartList } from '../../redux/cartSlice'
+
 
 import 'antd/dist/antd.css'
+import { useDispatch, useSelector } from "react-redux"
+import { useSearchParams } from "react-router-dom"
 
-const { Panel } = Collapse
-
-const text = `
-    A dog is a type of domesticated animal.
-    Known for its loyalty and faithfulness,
-    it can be found as a welcome guest in many households across the world.
-    `;
 
 const onChange = (key) => {
     console.log(key)
 }
 
-class Product extends React.Component {
-    constructor (props) {
-        super(props)
-        if (props.productDetail) {
-            this.productDetail = props.productDetail
-        } else {
-            this.productDetail = {
-                name: "Product name",
-                originPrice: 2,
-                discountPrice: 1.5,
-                rating: 3,
-                src: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-            }
+function Product(props) {
+
+    const dispatch = useDispatch()
+    const cartList = useSelector(selectCartList)
+
+    var details 
+    if (props.productDetail) {
+        details = props.productDetail
+    } else {
+        details = {
+            name: "mock product",
+            rating: 4,
+            originPrice: 2,
+            discountPrice: 1.5,
+            src: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
         }
-        this.reqImage = this.reqImage.bind(this)
+    }
+    
+    function addToCart() {
+        // console.log(props.productDetail.productName)
+        const item = {
+            id: details.productName,
+            productName: details.productName,
+            price: details.discountPrice,
+            count: 1,
+            src: details.src
+        }
+        dispatch(addItem(item))
+        console.log("Product CartList: ", cartList)
     }
 
-    reqImage(e) {
+    function reqImage(e) {
         console.log("click product name and get image", e.target)
-        reqGetImage({productName: this.productDetail.name}).then(response => {
+        reqGetImage({productName: details.productName}).then(response => {
             console.log("(Product.jsx/reqImage):", response.data)
         }).catch(error => {
             console.log("(Product.jsx/reqImage) error", error)
         })
     }
 
-    render() {
-        return (
-            <div style={{wdith:"300px", height:"400px", display:"inline", margin: "20px 10px"}}>
-                <Image 
-                    width={200} height={200} 
-                    style={{margin:"0px"}}
-                    src={this.productDetail.src} />
-                <div onClick={this.reqImage}>  {this.productDetail.name} </div>
-                <div> Description </div>
-                <div> Sales </div>
-                <Rate disabled defaultValue={this.productDetail.rating}> </Rate>
-                
-                <div>
-                    <div> Review </div>
-                </div>
-
-                <div> $ <span style={{color:"red", fontSize:"18px", fontWeight:"bold"}}>{this.productDetail.discountPrice}</span> </div>
-                <div> RRP: <s>${this.productDetail.originPrice}</s> </div>
-                
-                {/* <Collapse  style={{width:"300px"}} defaultActiveKey={['1']} onChange={onChange}>
-                    <Panel header="This is Specification of Product 1">
-                        <p> {text} </p>
-                    </Panel>
-                </Collapse> */}
+    return (
+        <div style={{wdith:"300px", height:"400px", display:"inline", margin: "20px 10px"}}>
+            <Image 
+                width={200} height={200} 
+                style={{margin:"0px"}}
+                src={details.src} />
+            <div onClick={reqImage}>  {details.productName} </div>
+            
+            <Rate disabled defaultValue={details.rating}> </Rate>
+            
+            <div>
+                <div> Review </div>
             </div>
-        )
-    }
+
+            <div> $ 
+                <span style={{color:"red", fontSize:"18px", fontWeight:"bold"}}>
+                    {details.discountPrice}</span>
+            </div>
+            <div> RRP: <s>${details.originPrice}</s> </div>
+            <Button onClick={addToCart}> Add </Button>
+            
+        </div>
+    )
+    
 }
 
 export default Product;
