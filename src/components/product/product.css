@@ -1,0 +1,41 @@
+.dropdown-order {
+    width: fill-available;
+    padding: 10px 0px;
+    background-color: white;
+}
+
+.dropdown-menu {
+    width: fill-available;
+    margin: 10px 0 0 0;
+    background-color: white;
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: rgb(241, 241, 241);
+}
+
+.dropdown-button {
+    width: fill-available;
+    padding: 10px 10px;
+    background-color: white;
+}
+
+.dropdown-button:hover {
+    background-color: rgb(241, 241, 241);
+}
+
+.dropdown-content {
+    display: none;
+    background-color: white;
+}
+
+.dropdown-content.row {
+    display: none;
+    background-color: white;
+}
+.dropdown-item {
+    padding: 8px 15px;
+}
+.dropdown-item:hover {
+    padding: 8px 20px;
+    background-color: rgb(241, 241, 241);
+}

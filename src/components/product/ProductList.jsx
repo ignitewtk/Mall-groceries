@@ -1,5 +1,5 @@
 
-import React from "react"
+import React, {useState} from "react"
 import Product from "./Product";
 import { Image, Button, Pagination,  Select, Row, Col, Checkbox, Input } from 'antd'
 
@@ -12,6 +12,8 @@ import { applyFilters, selectFilters, selectCategory, selectRating, selectPrice,
 
 import {store, mapDispatchToProps, mapStateToProps} from '../../store'
 import {connect} from 'react-redux'
+
+import './product.css'
 
 const {Option} = Select
 const {Search} = Input;
@@ -26,7 +28,11 @@ function ControlPanel() {
     const displayedImage = useSelector(selectDisplayedImage)
     const productList = useSelector(selectProductList)
 
+    const [categoryDisplay, setCategoryDisplay] = useState("none")
+    const [ratingDisplayed, setRatingDisplayed] = useState("none")
+
     function submitFilter() {
+        
         const newParam = {
             category: 'All',
             rating: 0,
@@ -57,80 +63,91 @@ function ControlPanel() {
         //     console.log("return list error:", error)
         // })
     }
+    
+    function displayCategroyMenu(e) {
+        // const element = document.getElementById("dropdown-list")
+        // console.log(element, element.style.display)
+        if (categoryDisplay == "block") {
+            setCategoryDisplay("none")
+        } else if (categoryDisplay == "none") {
+            setCategoryDisplay("block")
+        }
+    }
 
+    function displayRatingMenu(e) {
+        // const element = document.getElementById("dropdown-list")
+        // console.log(element, element.style.display)
+        if (ratingDisplayed == "block") {
+            setRatingDisplayed("none")
+        } else if (ratingDisplayed == "none") {
+            setRatingDisplayed("block")
+        }
+    }
+    
 
     return (
         <div style={{"padding":"30px 0px 0px 30px"}}>
             
+            
+            <Row> <span> {category} and {rating} and {price} </span></Row>
+            <Row> <Search placeholder="Search"/> </Row>
+            <div>
+                <Select
+                    defaultValue={"Sort By Price: default"}
+                    className="dropdown-order">
+                    <Option value="default"> Sort By Price: default </Option>
+                    <Option value="price+"> Sort By Price: low to high </Option>
+                    <Option value="price-"> Sort By Price: high to low </Option>
+                </Select>
+            </div>
+            <div>
+                <Select
+                    defaultValue={"Sort By Time: default"}
+                    className="dropdown-order">
+                    <Option value="default"> Sort By Time: default </Option>
+                    <Option value="time+"> Sort By Time: Oldest </Option>
+                    <Option value="time-"> Sort By Time: Newest </Option>
+                </Select>
+            </div>
+            <div>
+                <Select
+                    defaultValue={"Sort By Rating: default"}
+                    className="dropdown-order">
+                    <Option value="default"> Sort By Rating: default </Option>
+                    <Option value="rating+"> Sort By Rating: low to high </Option>
+                    <Option value="rating-"> Sort By Rating: high to low </Option>
+                </Select>
+            </div>
+                  
+            <div className="dropdown-menu">
+                <div onClick={displayCategroyMenu} className="dropdown-button" > Categories </div>
+                <div id="category-list" style={{display:categoryDisplay}} className="dropdown-content">
+                    <Row className="dropdown-item"><Checkbox> Vegetable </Checkbox></Row>
+                    <Row className="dropdown-item"><Checkbox> Fruit </Checkbox></Row>
+                    <Row className="dropdown-item"><Checkbox> Meat </Checkbox></Row>
+                </div>
+            </div>
+
+            <div className="dropdown-menu" >
+                <div onClick={displayRatingMenu} className="dropdown-button" > Ratings </div>
+                <div id="rating-list" style={{display:ratingDisplayed}} className="dropdown-content">
+                    <Row className="dropdown-item"><Checkbox> 3 stars </Checkbox></Row>
+                    <Row className="dropdown-item"><Checkbox> 4 stars </Checkbox></Row>
+                    <Row className="dropdown-item"><Checkbox> 5 stars </Checkbox></Row>
+                </div>
+            </div>
             <Image width={200} height={200} style={{margin:"0px"}}
                 // referrer="no-referrer|origin|unsafe-url" 
                 src={displayedImage} 
                 />
 
             <div> <span> {displayedImage} </span></div>
-            <Row> <Button onClick={submitFilter} type="primary"> Apply Filters </Button> </Row> 
-            <Row> <Search placeholder="Search"/> </Row>
-            <Row> <span> {category} and {rating} and {price} </span></Row>
-            <Row>
-                <Col>
-                    <Select
-                        defaultValue={"Sort By Price: default"}
-                        style={{
-                            width: 200,
-                        }}>
-                        <Option value="default"> Sort By Price: default </Option>
-                        <Option value="price+"> Sort By Price: low to high </Option>
-                        <Option value="price-"> Sort By Price: high to low </Option>
-                    </Select>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <Select
-                        defaultValue={"Sort By Time: default"}
-                        style={{
-                            width: 200,
-                        }}>
-                        <Option value="default"> Sort By Time: default </Option>
-                        <Option value="time+"> Sort By Time: Oldest </Option>
-                        <Option value="time-"> Sort By Time: Newest </Option>
-                    </Select>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <Select
-                        defaultValue={"Sort By Rating: default"}
-                        style={{
-                            width: 200,
-                        }}>
-                        <Option value="default"> Sort By Rating: default </Option>
-                        <Option value="rating+"> Sort By Rating: low to high </Option>
-                        <Option value="rating-"> Sort By Rating: high to low </Option>
-                    </Select>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <div> Categories </div>
-                    <Row><Checkbox> Vegetable </Checkbox></Row>
-                    <Row><Checkbox> Fruit </Checkbox></Row>
-                    <Row><Checkbox> Meat </Checkbox></Row>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <div> Ratings </div>
-                    <Row><Checkbox> 3 stars </Checkbox></Row>
-                    <Row><Checkbox> 4 stars </Checkbox></Row>
-                    <Row><Checkbox> 5 stars </Checkbox></Row>
-                </Col>
-            </Row>
+            <Row> <Button onClick={submitFilter} type="primary" id="btn-applyFilter"> Apply Filters </Button> </Row> 
+            
         </div>
         
     )
 }
-
 
 class ProductList extends React.Component {
 
