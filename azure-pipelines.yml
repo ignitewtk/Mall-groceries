@@ -22,8 +22,26 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
-- task: PublishPipelineArtifact@1
+- task: CopyFiles@2
+  displayName: 'Copy files'
   inputs:
-    pathToPublish: '$(Build.ArtifactStagingDirectory)'
-    artifact: 'drop'
+    sourceFolder: '$(directory/build)'
+    Contents: '**/*'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    cleanTargetFolder: true
+
+- task: ArchiveFiles@2
+  displayName: 'Archive files'
+  inputs:
+    rootFolderFile: '$(Build.ArtifactStagingDirectory)'
+    includeRootFolder: false
+    archiveType: zip
+    archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+    replaceExistingArchive: true
+
+- task: PublishBuildArtifact@1
   displayName: 'Publish artifact'
+  inputs:
+    pathToPublish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+    artifact: 'drop'
+  
