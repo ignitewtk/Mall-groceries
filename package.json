@@ -1,5 +1,4 @@
 {
-  "proxy": "http://localhost:3050",
   "name": "mall",
   "version": "0.1.0",
   "private": true,
