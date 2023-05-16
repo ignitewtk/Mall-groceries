@@ -39,7 +39,7 @@ steps:
     archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
     replaceExistingArchive: true
 
-- task: PublishBuildArtifact@1
+- task: PublishBuildArtifacts@1
   displayName: 'Publish artifact'
   inputs:
     pathToPublish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
