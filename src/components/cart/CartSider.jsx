@@ -3,6 +3,7 @@ import { Row, Col, Button } from 'antd'
 import  { useSelector, useDispatch } from 'react-redux'
 import { addOneToCount, addItem, deleteItem, selectCartList, selectCount, selectTotalPrice } from '../../redux/cartSlice'
 import CartItem from "./CartItem";
+import { Link } from 'react-router-dom'
 
 import './Cart.css';
 import { CartProducts } from './dataCart'
@@ -47,10 +48,8 @@ function CartSider(props) {
                     "position": "fixed",
                     "bottom": 0,}}>
                         <div> Total price: {totalPrice}</div>
-                        {/* <div> Total Count: {count} </div> */}
-                        <Button onClick={()=>{dispatch(addOneToCount())}}> Checkout </Button> 
+                        <Link to="payment"> <Button onClick={()=>{dispatch(addOneToCount())}}> Checkout </Button>  </Link>
                 </div>
-                
             </nav>
         </div>
         

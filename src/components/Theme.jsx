@@ -70,6 +70,10 @@ class Theme extends React.Component {
     ]
     return (
       <div>
+        <Row>
+          <Col span={12}> info@emallgorcerie.com </Col>
+          <Col span={12}> Free shipping area available </Col>
+        </Row>
         <ThemeHeader cartShowed={this.state.cartShowed} changeCartShowed={this.changeCartShowed}/>
         <Menu mode="horizontal" items={menuItems}></Menu>
         <Outlet />
@@ -126,7 +130,6 @@ class ThemeHeader extends React.Component {
         <Row >
           <Col span={4}> <Link to="main"> Ahahaha </Link> </Col>
           <Col span={6}>  </Col>
-          <Col span={4}> <Search placeholder="Search"/>  </Col>
           <Col span={2}>  </Col>
           <Col span={2}> <EnvironmentOutlined /> Location </Col>
           <Col span={2}> <Link to='login'> Login </Link> </Col>

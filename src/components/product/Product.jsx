@@ -1,6 +1,6 @@
 
 import React from "react"
-import { Rate, Collapse, Image, Button } from 'antd'
+import { Rate, Collapse, Image, Button, Row, Col } from 'antd'
 import { reqGetImage } from "../../api"
 import { addItem, deleteItem, selectCartList } from '../../redux/cartSlice'
 
@@ -62,18 +62,22 @@ function Product(props) {
                 src={details.src} />
             <div onClick={reqImage}>  {details.productName} </div>
             
-            <Rate disabled defaultValue={details.rating}> </Rate>
+            {/* <Rate disabled defaultValue={details.rating}> </Rate> */}
             
-            <div>
-                <div> Review </div>
-            </div>
+            <Row>
+                <Col span={8}>
+                    <span style={{ fontWeight:"600"}}> Review </span>
+                </Col>
 
-            <div> $ 
-                <span style={{color:"red", fontSize:"18px", fontWeight:"bold"}}>
-                    {details.discountPrice}</span>
-            </div>
-            <div> RRP: <s>${details.originPrice}</s> </div>
-            <Button onClick={addToCart}> Add </Button>
+                <Col span={2}> 
+                    <span style={{ fontWeight:"600"}}> $ </span>
+                    <span style={{color:"red", fontSize:"18px", fontWeight:"bold"}}>
+                        {details.discountPrice}</span>
+                </Col>
+            </Row>
+            
+            {/* <div> RRP: <s>${details.originPrice}</s> </div> */}
+            <Button style={{ background: "green", color:"white"}} onClick={addToCart}> Add </Button>
             
         </div>
     )

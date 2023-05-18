@@ -3,7 +3,7 @@ import React, {useState} from "react"
 import Product from "./Product";
 import { Image, Button, Pagination,  Select, Row, Col, Checkbox, Input } from 'antd'
 
-import products from './config/products'
+import {products} from './config/products'
 import { reqGetList, reqGetProductList, reqGetImage } from "../../api";
 import  { useSelector, useDispatch } from 'react-redux'
 import { applyFilters, selectFilters, selectCategory, selectRating, selectPrice, 
@@ -28,8 +28,8 @@ function ControlPanel() {
     const displayedImage = useSelector(selectDisplayedImage)
     const productList = useSelector(selectProductList)
 
-    const [categoryDisplay, setCategoryDisplay] = useState("none")
-    const [ratingDisplayed, setRatingDisplayed] = useState("none")
+    const [categoryDisplay, setCategoryDisplay] = useState("block")
+    const [ratingDisplayed, setRatingDisplayed] = useState("block")
 
     function submitFilter() {
         
@@ -86,7 +86,7 @@ function ControlPanel() {
     
 
     return (
-        <div style={{"padding":"30px 0px 0px 30px"}}>
+        <div style={{"padding":"30px 40px 0px 30px"}}>
             
             
             <Row> <span> {category} and {rating} and {price} </span></Row>
@@ -136,11 +136,10 @@ function ControlPanel() {
                     <Row className="dropdown-item"><Checkbox> 5 stars </Checkbox></Row>
                 </div>
             </div>
-            <Image width={200} height={200} style={{margin:"0px"}}
+            {/* <Image width={200} height={200} style={{margin:"0px"}}
                 // referrer="no-referrer|origin|unsafe-url" 
                 src={displayedImage} 
-                />
-
+                /> */}
             <div> <span> {displayedImage} </span></div>
             <Row> <Button onClick={submitFilter} type="primary" id="btn-applyFilter"> Apply Filters </Button> </Row> 
             
@@ -152,29 +151,58 @@ function ControlPanel() {
 class ProductList extends React.Component {
 
     render () {
+
         return (
             <Row>
                 <Col span={6}> <ControlPanel /> </Col> 
                 <Col span={18}>
-                    <Row>
-                        {
-                            // console.log(store.getState().product.productList)
-                            store.getState().product.productList.map(item => (
-                                <Product key={item.productName} productDetail={item} src={item.src} />
-                            ))}
-                    </Row>
-                    <Row>
-                        <Col span={8}><Product/></Col>
-                    </Row> 
-                    <Row>
-                    <Pagination 
-                        total={12}
-                        showSizeChanger
-                        showQuickJumper
-                        showTotal={(total)=> `Total ${total} items`}
-                    />
-                    </Row>
+                    <div style={{ margin:"30px"}}>
+                        <Row>
+                            {
+                                // console.log(store.getState().product.productList)
+                                store.getState().product.productList.map(item => (
+                                    <Product key={item.productName} productDetail={item} src={item.src} />
+                                ))}
+                        </Row>
+                       
+                        <Row>
+                            {
+                                store.getState().product.productList.length == 0 &&
+                                    products.map(item => (
+                                        <Product key={item.productName} productDetail={item} src={item.src} />
+                                    ))
+                                
+                            }
+                            <Col span={6}>
+                                <Product/>
+                            </Col>
+                            <Col span={6}>
+                                <Product key="Mock Item" productDetail={
+                                    {
+                                        productName: "mock product",
+                                        rating: 4,
+                                        originPrice: 2,
+                                        discountPrice: 1.5,
+                                        src: "images/Asian Baby Bulk Choy.jpg",
+                                    }
+                                }/>
+                            </Col>
+                            
+                        </Row> 
+                    </div>
+                    <div style={{ margin:"30px"}}>
+                        <Row>
+                            <Pagination 
+                                total={12}
+                                showSizeChanger
+                                showQuickJumper
+                                showTotal={(total)=> `Total ${total} items`}
+                            />
+                        </Row>
+                    </div>
+                    
                 </Col>
+
             </Row>
         )
     }

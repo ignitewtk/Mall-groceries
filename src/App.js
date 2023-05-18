@@ -7,7 +7,7 @@ import ProductList from './components/product/ProductList'
 import Login from './components/account/Login'
 import Register from './components/account/Register';
 import UserProfile from './components/account/UserProfile'
-
+import Payment from './components/payment/payment';
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/profile' element={<UserProfile />} />
+          <Route path='payment' element={<Payment />} />
         </Route>
         
 

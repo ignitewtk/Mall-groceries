@@ -2,134 +2,141 @@
 
 const products = [
     {
-        name: "Pork Loin",
+        productName: "Pork Loin",
         originPrice: 10.56,
         discountPrice: 8.99,
         rating: 3,
-        img: require("../img/PorkLoin.jpg"),
+        src: "images/PorkLoin.jpg",
     },
     {
-        name: "Asian Baby Bulk Choy",
+        productName: "Asian Baby Bulk Choy",
         originPrice: 2.99,
         discountPrice: 2.5,
         rating: 4,
-        img: require("../img/Asian Baby Bulk Choy.jpg"),
+        src: "images/Asian Baby Bulk Choy.jpg",
     },
     {
-        name: "Fresh Eggs",
+        productName: "Fresh Eggs",
         originPrice: 7.88,
         discountPrice: 6.99,
         rating: 5,
-        img: require("../img/Fresh Eggs.jpg"),
+        src: "images/Fresh Eggs.jpg",
     },
     {
-        name: "Chicken Wings",
+
+        productName: "Chicken Wings",
         originPrice: 7.88,
         discountPrice: 6.99,
         rating: 5,
-        img: require("../img/Chicken Wings.jpg"),
+        src: "images/Chicken Wings.jpg",
     },
     {
-        name: "Green Grapes",
+        productName: "Green Grapes",
         originPrice: 2.99,
         discountPrice: 2.5,
         rating: 4,
-        img: require("../img/Green Grapes.jpg"),
+        src: "images/Green Grapes.jpg",
     },
     {
-        name: "Fuji Apples",
+        productName: "Fuji Apples",
         originPrice: 7.88,
         discountPrice: 6.99,
         rating: 5,
-        img: require("../img/Fuji Apples.jpg"),
+        src: "images/Fuji Apples.jpg",
     },
     {
-        name: "Keitt Mango",
+        productName: "Keitt Mango",
         originPrice: 2.99,
         discountPrice: 2.5,
         rating: 4,
-        img: require("../img/Keiit Mango.jpg"),
+        src: "images/Keiit Mango.jpg",
     },
     {
-        name: "Royal Gala Apples",
+        productName: "Royal Gala Apples",
         originPrice: 7.88,
         discountPrice: 6.99,
         rating: 5,
-        img: require("../img/Royal Gala Apples.jpg"),
+        src: "images/Royal Gala Apples.jpg",
     },
     {
-        name: "Tomatoes",
+        productName: "Tomatoes",
         originPrice: 2.99,
         discountPrice: 2.5,
         rating: 4,
-        img: require("../img/Tomatoes.jpg"),
+        src: "images/Tomatoes.jpg",
     },
     {
-        name: "Chicken Drumpstick",
+        productName: "Chicken Drumpstick",
         originPrice: 7.88,
         discountPrice: 6.99,
         rating: 5,
-        img: require("../img/Chicken Drumpstick.jpg"),
+        src: "images/Chicken Drumpstick.jpg",
     },
     {
-        name: "Japanese Bulk Choy",
+        productName: "Japanese Bulk Choy",
         originPrice: 7.88,
         discountPrice: 6.99,
         rating: 5,
-        img: require("../img/Japanese Bulk Choy.jpg"),
+        src: "images/Japanese Bulk Choy.jpg",
     },
     {
-        name: "Creamy Potato",
+        productName: "Creamy Potato",
         originPrice: 2.99,
         discountPrice: 2.5,
         rating: 4,
-        img: require("../img/Creamy Potato.jpg"),
+        src: "images/Creamy Potato.jpg",
     },
     {
-        name: "Washed Potatoes",
+        productName: "Washed Potatoes",
         originPrice: 7.88,
         discountPrice: 6.99,
         rating: 5,
-        img: require("../img/Washed Potatoes.jpg"),
+        src: "images/Washed Potatoes.jpg",
     },
     {
-        name: "Seedless Grapes",
+        productName: "Seedless Grapes",
         originPrice: 7.88,
         discountPrice: 6.99,
         rating: 5,
-        img: require("../img/Seedless Grapes.jpg"),
+        src: "images/Seedless Grapes.jpg",
     },
     {
-        name: "Seedless Finger Grapes",
+        productName: "Seedless Finger Grapes",
         originPrice: 7.88,
         discountPrice: 6.99,
         rating: 5,
-        img: require("../img/Seedless Finger Grapes.jpg"),
+        src: "images/Seedless Finger Grapes.jpg",
     },
     {
-        name: "Pork Ribs",
+        productName: "Pork Ribs",
         originPrice: 2.99,
         discountPrice: 2.5,
         rating: 4,
-        img: require("../img/Pork Ribs.jpg"),
+        src: "images/Pork Ribs.jpg",
     },
     {
-        name: "Frozen T-bones Steak",
+        productName: "Frozen T-bones Steak",
         originPrice: 7.88,
         discountPrice: 6.99,
         rating: 5,
-        img: require("../img/Frozen T-bones Steak.jpg"),
+        src: "images/Frozen T-bones Steak.jpg",
     },
     {
-        name: "Fresh Frozen Beef Steak",
+        productName: "Fresh Frozen Beef Steak",
         originPrice: 2.99,
         discountPrice: 2.5,
         rating: 4,
-        img: require("../img/Fresh Frozen Beef Steak.jpg"),
+        src: "images/Fresh Frozen Beef Steak.jpg",
     },
 ]
                            
-
+// {
+//     productName: "Fresh Frozen Beef Steak",
+//     originPrice: 2.99,
+//     discountPrice: 2.5,
+//     rating: 4,
+//     src: "require(images/Fresh Frozen Beef Steak.jpg"),
+// }
 
 function getProducts(path) {
     var products = []
@@ -156,12 +163,12 @@ function getProducts(path) {
     for (var i=0; i<files.length; i++) {
         products.push(
             {
-                name: files[i],
+                productName: files[i],
                 originPrice: 2,
                 discountPrice: 1.5,
                 rating: 4.4,
-                img: path + "/" + files[i],
+                src: path + "/" + files[i],
             })}
     return products}
     
-export default products
+export {products}
