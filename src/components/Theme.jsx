@@ -1,7 +1,7 @@
 
 import React from "react"
-import { SearchOutlined, ShoppingCartOutlined, EnvironmentOutlined ,FacebookOutlined, InstagramOutlined, TwitterOutlined, } from '@ant-design/icons';
-import { Col, Row, Input, Menu, Pagination, BackTop} from 'antd'
+import { SearchOutlined, ShoppingCartOutlined, EnvironmentOutlined ,FacebookOutlined, InstagramOutlined, TwitterOutlined, CloseOutlined, UserOutlined} from '@ant-design/icons';
+import { Col, Row, Input, Menu, Pagination, BackTop, Button} from 'antd'
 import { Outlet, Link } from 'react-router-dom'
 
 import Banner from "./Banner";
@@ -69,14 +69,17 @@ class Theme extends React.Component {
       },
     ]
     return (
-      <div>
+      <div style={{ height: "90vh", weight:"100vw", display:"block"}}>
         <Row>
           <Col span={12}> info@emallgorcerie.com </Col>
           <Col span={12}> Free shipping area available </Col>
         </Row>
         <ThemeHeader cartShowed={this.state.cartShowed} changeCartShowed={this.changeCartShowed}/>
+        
         <Menu mode="horizontal" items={menuItems}></Menu>
-        <Outlet />
+        <section style={{ flexGrow:"1"}}>
+          <Outlet />
+        </section>
         <About />
         <BackTop />
         <CartSider cartShowed={this.state.cartShowed} changeCartShowed={this.changeCartShowed}/>
@@ -126,18 +129,27 @@ class ThemeHeader extends React.Component {
 
   render() {
     return (
-      <div style={{"padding":"20px 20px", "backgroundColor":"#C7E5B7"}}>
-        <Row >
-          <Col span={4}> <Link to="main"> Ahahaha </Link> </Col>
-          <Col span={6}>  </Col>
-          <Col span={2}>  </Col>
-          <Col span={2}> <EnvironmentOutlined /> Location </Col>
-          <Col span={2}> <Link to='login'> Login </Link> </Col>
-        <Col span={2}> <Link to='profile'> {store.getState().account.sessionUserName} </Link> </Col>
+      <div style={{"padding":"20px 20px", "backgroundColor":"#171c1f"}}>
+        <Row style={{ fontSize:"20px", color:"white"}}>
+          <Col span={10}> 
+            <Link to="main"> <span style={{ fontFamily:"cursive", fontSize:"40px", color:"white"}}> Fresh Home </span>
+            </Link> 
+          </Col>
 
-          <Col span={2}> 
-          <span onClick={this.showCart}> <ShoppingCartOutlined /> Cart  </span>  
-          
+          <Col span={14}>  
+            <Button style={{ display:"flex", justifyContent: "center", width:"60px", 
+              color:"white", borderColor:"transparent", backgroundColor: "transparent", 
+              float:"right", padding: "0", margin:"0 15px 0 0", fontSize:"20px"}} onClick={this.showCart}> 
+              <ShoppingCartOutlined style={{margin:"5px 0 0 0",  fontSize:"20px" }}/></Button>  
+
+            <Link to='profile' style={{ float:"right", margin:"0 15px 0 0", fontSize:"20px"}}> <UserOutlined /> {store.getState().account.sessionUserName} </Link> 
+            <Link to='login' style={{ float:"right", margin:"0 15px 0 0", fontSize:"20px"}}>Login</Link> 
+            
+            <Button style={{ 
+              display:"flex", justifyContent: "center", width:"60px", color:"white", 
+              borderColor:"transparent", backgroundColor: "transparent", float:"right", 
+              padding: "0", margin:"0 15px 0 0", fontSize:"20px"}}> 
+              <EnvironmentOutlined style={{ margin:"5px 0 0 0", fontSize:"20px"}}/></Button>  
           </Col>
         </Row>
       </div>
@@ -150,28 +162,26 @@ class About extends React.Component {
   render() {
     return (
       <Row style={{
-          "margin":"20px 0", "padding":"50px 100px", 
+          "margin":"20px 0 0 0", "padding":"50px 100px", 
           "position": "relative",
           "bottom": 0,
-          "backgroundColor":"#C7E5B7"}}>
+          "backgroundColor":"#171c1f", color:"white"}}>
         <Col span={3}></Col>
         <Col span={6}>
-          <Row> OFFICIAL SITE </Row>
+          <Row style={{ margin:"20px 20px 10px 0", fontWeight:"bold", fontSize:"20px"}}> OFFICIAL SITE </Row>
           <Row> COMPANY </Row>
           <Row> ONLINE SITE </Row>
           <Row>
-            <Col span={3}></Col>
-            <Col span={6}><FacebookOutlined /></Col>
-            <Col span={6}><InstagramOutlined /></Col>
-            <Col span={6}><TwitterOutlined /></Col>
-            <Col span={3}></Col>
+            <FacebookOutlined style={{ margin:"10px 20px 0 0", fontSize:"40px"}}/>
+            <InstagramOutlined style={{ margin:"10px 20px 0 0", fontSize:"40px"}}/>
+            <TwitterOutlined style={{ margin:"10px 20px 0 0", fontSize:"40px"}}/>
           </Row>
         </Col>
         <Col span={6}>
-          <Row> CATEGORY </Row>
+          <Row  style={{ margin:"20px 20px 10px 0", fontWeight:"bold", fontSize:"20px"}}> CATEGORY </Row>
         </Col>
         <Col span={6}>
-          <Row> SERVICE </Row>
+          <Row style={{ margin:"20px 20px 10px 0", fontWeight:"bold", fontSize:"20px"}}> SERVICE </Row>
           <Row> About Us </Row>
           <Row> Shopping Guide </Row>
           <Row> Privacy Policy </Row>

@@ -3,7 +3,7 @@ import React from "react"
 import { Rate, Collapse, Image, Button, Row, Col } from 'antd'
 import { reqGetImage } from "../../api"
 import { addItem, deleteItem, selectCartList } from '../../redux/cartSlice'
-
+import { StarFilled } from '@ant-design/icons'
 
 import 'antd/dist/antd.css'
 import { useDispatch, useSelector } from "react-redux"
@@ -55,29 +55,32 @@ function Product(props) {
     }
 
     return (
-        <div style={{wdith:"300px", height:"400px", display:"inline", margin: "20px 10px"}}>
+        <div style={{wdith:"300px", height:"400px", margin: "10px 20px 0 0"}}>
             <Image 
                 width={200} height={200} 
                 style={{margin:"0px"}}
                 src={details.src} />
-            <div onClick={reqImage}>  {details.productName} </div>
+            
             
             {/* <Rate disabled defaultValue={details.rating}> </Rate> */}
-            
             <Row>
-                <Col span={8}>
-                    <span style={{ fontWeight:"600"}}> Review </span>
-                </Col>
-
-                <Col span={2}> 
-                    <span style={{ fontWeight:"600"}}> $ </span>
-                    <span style={{color:"red", fontSize:"18px", fontWeight:"bold"}}>
+                <span onClick={reqImage} style={{ height:"",fontSize:"18px", fontWeight:"normal"}}> {details.productName} </span>
+            </Row>
+            <Row  style={{ fontWeight: "bold", fontSize:"20px"}}>
+                <Col span={8}> 
+                <span>
+                    <span>$ </span> 
+                    <span style={{ color:"red"}}>
                         {details.discountPrice}</span>
+                </span>
+                    
                 </Col>
             </Row>
             
             {/* <div> RRP: <s>${details.originPrice}</s> </div> */}
-            <Button style={{ background: "green", color:"white"}} onClick={addToCart}> Add </Button>
+            <Button style={{ 
+                width:"100%", height:"2.75rem", background: "#178841", 
+                color:"white", fontWeight:"bold"}} onClick={addToCart}> Add </Button>
             
         </div>
     )

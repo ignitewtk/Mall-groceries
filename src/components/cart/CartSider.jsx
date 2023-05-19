@@ -1,5 +1,6 @@
 import React from "react";
-import { Row, Col, Button } from 'antd'
+import { Button } from 'antd'
+import { CloseOutlined} from '@ant-design/icons';
 import  { useSelector, useDispatch } from 'react-redux'
 import { addOneToCount, addItem, deleteItem, selectCartList, selectCount, selectTotalPrice } from '../../redux/cartSlice'
 import CartItem from "./CartItem";
@@ -21,7 +22,7 @@ function CartSider(props) {
         <div>
             <nav className={props.cartShowed? 'nav-menu active': 'nav-menu'}>
                 <div onClick={props.changeCartShowed}> 
-                    <Button> Close </Button> 
+                    <Button> <CloseOutlined /> </Button> 
                 </div>
                 
                 <div>
@@ -31,8 +32,8 @@ function CartSider(props) {
                             paddingInlineStart: "0px",
                             overflowY: "scroll", 
                             overflowX: "hidden", 
-                            height: "550px",
-                            width: "250px"
+                            height: "80vh",
+                            width: "950px"
                             }}>
                         {cartList.map((item) => {
                             return (
@@ -44,6 +45,7 @@ function CartSider(props) {
                     </ul>
                 </div>
                 <div style={{
+                    height: "10vh",
                     "margin":"10px 0", "padding":"0px 0px", 
                     "position": "fixed",
                     "bottom": 0,}}>

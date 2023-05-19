@@ -153,10 +153,10 @@ class ProductList extends React.Component {
     render () {
 
         return (
-            <Row>
+            <Row style={{ height: "100%", weight:"100%"}}>
                 <Col span={6}> <ControlPanel /> </Col> 
                 <Col span={18}>
-                    <div style={{ margin:"30px"}}>
+                    <div style={{ margin:"30px 0 0 0", height: "60vh", overflowY:"scroll", scrollbarWidth: "none"}}>
                         <Row>
                             {
                                 // console.log(store.getState().product.productList)
@@ -173,7 +173,7 @@ class ProductList extends React.Component {
                                     ))
                                 
                             }
-                            <Col span={6}>
+                            {/* <Col span={6}>
                                 <Product/>
                             </Col>
                             <Col span={6}>
@@ -186,7 +186,7 @@ class ProductList extends React.Component {
                                         src: "images/Asian Baby Bulk Choy.jpg",
                                     }
                                 }/>
-                            </Col>
+                            </Col> */}
                             
                         </Row> 
                     </div>
