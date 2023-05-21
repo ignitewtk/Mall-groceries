@@ -67,9 +67,9 @@ function ControlPanel() {
     function displayCategroyMenu(e) {
         // const element = document.getElementById("dropdown-list")
         // console.log(element, element.style.display)
-        if (categoryDisplay == "block") {
+        if (categoryDisplay === "block") {
             setCategoryDisplay("none")
-        } else if (categoryDisplay == "none") {
+        } else if (categoryDisplay === "none") {
             setCategoryDisplay("block")
         }
     }
@@ -77,9 +77,9 @@ function ControlPanel() {
     function displayRatingMenu(e) {
         // const element = document.getElementById("dropdown-list")
         // console.log(element, element.style.display)
-        if (ratingDisplayed == "block") {
+        if (ratingDisplayed === "block") {
             setRatingDisplayed("none")
-        } else if (ratingDisplayed == "none") {
+        } else if (ratingDisplayed === "none") {
             setRatingDisplayed("block")
         }
     }
@@ -151,27 +151,32 @@ function ControlPanel() {
 class ProductList extends React.Component {
 
     render () {
-
+        console.log(store.getState().product.productList)
+        console.log(products)
         return (
             <Row style={{ height: "100%", weight:"100%"}}>
                 <Col span={6}> <ControlPanel /> </Col> 
                 <Col span={18}>
                     <div style={{ margin:"30px 0 0 0", height: "60vh", overflowY:"scroll", scrollbarWidth: "none"}}>
-                        <Row>
+                        {/* <Row>
                             {
-                                // console.log(store.getState().product.productList)
                                 store.getState().product.productList.map(item => (
                                     <Product key={item.productName} productDetail={item} src={item.src} />
                                 ))}
-                        </Row>
+                        </Row> */}
                        
                         <Row>
                             {
-                                store.getState().product.productList.length == 0 &&
+                                (
+                                    (store.getState().product.productList.length > 0 && 
+                                    store.getState().product.productList.map(item => (
+                                        <Product key={item.productName} productDetail={item} src={item.src} />
+                                    ))) || 
+                                    (store.getState().product.productList.length === 0 &&
                                     products.map(item => (
                                         <Product key={item.productName} productDetail={item} src={item.src} />
-                                    ))
-                                
+                                    )))
+                                )
                             }
                             {/* <Col span={6}>
                                 <Product/>

@@ -5,6 +5,10 @@
 import ajax from './ajax'
 
 var BASE = ''
+
+export const testPostApi = (param) => ajax(BASE + '/apiTest', param, 'POST')
+export const testGetApi = () => ajax(BASE + '/apiTest', {}, 'GET')
+
 // Account
 
 /* Login

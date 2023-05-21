@@ -42,7 +42,7 @@ export const cartSlice = createSlice({
             var hasNew = true
             for (var i=0; i<state.cartList.length; i++) {
                 // console.log(item.productName, item.productName,'----', state.cartList[i].productName)
-                if (item.productName == state.cartList[i].productName) {
+                if (item.productName === state.cartList[i].productName) {
                     // console.log('equal')
                     state.cartList[i].count = state.cartList[i].count + 1
                     hasNew = false
@@ -84,7 +84,7 @@ export const cartSlice = createSlice({
             var itemIndex = -1
             for (var i=0; i<state.cartList.length; i++) {
                 // console.log(item.productName, item.productName,'----', state.cartList[i].productName)
-                if (item.productName == state.cartList[i].productName) {
+                if (item.productName === state.cartList[i].productName) {
                     // console.log('equal')
                     if (state.cartList[i].count === 1) {
                         state.totalPrice = state.totalPrice - state.cartList[i].price
@@ -106,7 +106,7 @@ export const cartSlice = createSlice({
             let item = action.payload
             var idx = -1
             for (var i=0; i<state.cartList.length; i++) {
-                if (item.productName == state.cartList[i].productName) {
+                if (item.productName === state.cartList[i].productName) {
                     idx = i
                     break}}
             state.totalPrice = state.totalPrice - state.cartList[i].price * state.cartList[i].count

@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Button } from 'antd'
+import { Button } from 'antd'
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import  { useSelector, useDispatch } from 'react-redux'
 import { addOneToCount, addItem, reduceItem, deleteItem, selectCartList, selectCount } from '../../redux/cartSlice'
