@@ -33,13 +33,14 @@ function PaymentInfo(props) {
 
     return (
         <div>
-            <Row>
-                <Col span={6}> <Button >G Pay</Button></Col>
-                <Col span={6}> <Button> Pay with Link </Button></Col>
+            <Row style={{width:"25vw"}}>
+                <button style={{ margin: "10px 0", border:"none", backgroundColor:"black", color:"white", height:"35px", width:"50%"}}>Google Pay</button>
+                <button style={{ margin: "10px 0", border:"none", backgroundColor:"green", color:"white", height:"35px", width:"50%"}}> Pay with Link </button>
             </Row>
             <Row>
                 <Col span={12}>
                     <Form>
+                        <label> Email </label>
                         <Form.Item 
                             name="email" 
                             // 自定义验证
@@ -48,16 +49,17 @@ function PaymentInfo(props) {
                             ]}>
                             <Input prefix={<MailOutlined />} placeholder="Email"></Input>
                         </Form.Item>
-                        <label> Card information </label>
+                        <label> Expired Date </label>
                         <Form.Item name="Expired date">
-                            <Input prefix={<MailOutlined />} placeholder="Expired date"></Input>
+                            <Input placeholder="Expired date"></Input>
                         </Form.Item>
+                        <label> CVV </label>
                         <Form.Item name="CVV">
-                            <Input prefix={<MailOutlined />} placeholder="CVV"></Input>
+                            <Input placeholder="CVV"></Input>
                         </Form.Item>
                         <label> Name on Card </label>
                         <Form.Item name="Name On Card">
-                            <Input prefix={<MailOutlined />} placeholder="Name On Card"></Input>
+                            <Input placeholder="Name On Card"></Input>
                         </Form.Item>
                         <Form.Item>
                             <Button type="primary" htmlType='submit' className='login-form-button'> Pay </Button>

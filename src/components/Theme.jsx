@@ -6,8 +6,9 @@ import { Outlet, Link } from 'react-router-dom'
 
 import Banner from "./Banner";
 import CartSider from "./cart/CartSider"
-import {store, mapDispatchToProps, mapStateToProps} from '../store'
+import {store} from '../store'
 import {connect} from 'react-redux'
+import { bindActionCreators } from "redux";
 
 const {Search} = Input;
 
@@ -191,6 +192,20 @@ class About extends React.Component {
       </Row>
     )
   }
+}
+
+const mapStateToProps = (state) => {
+  return {
+      // e.g count: state.counter.count
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+      {
+          //e.g：increment: () => incrementAction()
+      }
+  )
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Theme);

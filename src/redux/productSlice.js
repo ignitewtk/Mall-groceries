@@ -37,6 +37,7 @@ export const productSlice = createSlice({
             // state.displayedImage = action.payload
         },
         setProductList: (state, action) => {
+            console.log("product list action:", action)
             state.productList = action.payload
         }
     }

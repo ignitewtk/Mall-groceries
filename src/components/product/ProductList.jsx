@@ -10,10 +10,12 @@ import { applyFilters, selectFilters, selectCategory, selectRating, selectPrice,
     displayImage, selectDisplayedImage, 
     setProductList, selectProductList } from '../../redux/productSlice'
 
-import {store, mapDispatchToProps, mapStateToProps} from '../../store'
+import {store} from '../../store'
+
 import {connect} from 'react-redux'
 
 import './product.css'
+import { bindActionCreators } from "redux";
 
 const {Option} = Select
 const {Search} = Input;
@@ -43,9 +45,8 @@ function ControlPanel() {
         
         // send request to backend and update product list
         reqGetProductList(newParam).then(response =>  {
-            console.log("Product List:", response.data)
-            dispatch(setProductList(response.data))
-            // console.log(productList)
+            const productList = response.data
+            dispatch(setProductList(productList))
         }).catch(error => {
             console.log("return product list error:", error)
         })
@@ -56,12 +57,6 @@ function ControlPanel() {
         }).catch(error => {
             console.log("return displayed image error:", error)
         })
-
-        // reqGetList().then(response =>  {
-        //     console.log("return list:", response.data)
-        // }).catch(error => {
-        //     console.log("return list error:", error)
-        // })
     }
     
     function displayCategroyMenu(e) {
@@ -83,7 +78,6 @@ function ControlPanel() {
             setRatingDisplayed("block")
         }
     }
-    
 
     return (
         <div style={{"padding":"30px 40px 0px 30px"}}>
@@ -150,49 +144,40 @@ function ControlPanel() {
 
 class ProductList extends React.Component {
 
+    constructor (props) {
+        super(props)
+    }
+
     render () {
-        console.log(store.getState().product.productList)
-        console.log(products)
+
+        // Initial product list local data of product list if request fails
+        if(this.props.productList.length === 0) {
+            console.log(this.props.productList.length)
+            this.props.setProductList(products)
+        }
+
         return (
-            <Row style={{ height: "100%", weight:"100%"}}>
+            <Row style={{ height: "100%", width:"100%"}}>
                 <Col span={6}> <ControlPanel /> </Col> 
                 <Col span={18}>
                     <div style={{ margin:"30px 0 0 0", height: "60vh", overflowY:"scroll", scrollbarWidth: "none"}}>
-                        {/* <Row>
+                        <Row>
                             {
                                 store.getState().product.productList.map(item => (
                                     <Product key={item.productName} productDetail={item} src={item.src} />
-                                ))}
-                        </Row> */}
-                       
-                        <Row>
-                            {
-                                (
-                                    (store.getState().product.productList.length > 0 && 
-                                    store.getState().product.productList.map(item => (
-                                        <Product key={item.productName} productDetail={item} src={item.src} />
-                                    ))) || 
-                                    (store.getState().product.productList.length === 0 &&
-                                    products.map(item => (
-                                        <Product key={item.productName} productDetail={item} src={item.src} />
-                                    )))
-                                )
+                                ))
+                                // Condition rendering
+                                // (
+                                //     (store.getState().product.productList.length > 0 && 
+                                //     store.getState().product.productList.map(item => (
+                                //         <Product key={item.productName} productDetail={item} src={item.src} />
+                                //     ))) || 
+                                //     (store.getState().product.productList.length === 0 &&
+                                //     products.map(item => (
+                                //         <Product key={item.productName} productDetail={item} src={item.src} />
+                                //     )))
+                                // )
                             }
-                            {/* <Col span={6}>
-                                <Product/>
-                            </Col>
-                            <Col span={6}>
-                                <Product key="Mock Item" productDetail={
-                                    {
-                                        productName: "mock product",
-                                        rating: 4,
-                                        originPrice: 2,
-                                        discountPrice: 1.5,
-                                        src: "images/Asian Baby Bulk Choy.jpg",
-                                    }
-                                }/>
-                            </Col> */}
-                            
                         </Row> 
                     </div>
                     <div style={{ margin:"30px"}}>
@@ -213,5 +198,18 @@ class ProductList extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        productList: state.product.productList
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(
+        {
+            setProductList: (products) => dispatch(setProductList(products)),
+        }
+    )
+}
 // export default ProductList;
 export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
