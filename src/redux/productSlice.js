@@ -26,6 +26,7 @@ export const productSlice = createSlice({
             state.category = 'veges'
             state.rating = 3
             state.price = 10
+            console.log("Apply filter:", action)
         },
         displayImage: (state, action) => {
             if (action.payload.length !== 0) {
@@ -39,17 +40,39 @@ export const productSlice = createSlice({
         setProductList: (state, action) => {
             console.log("product list action:", action)
             state.productList = action.payload
+        },
+        setListOrder: (state, action) => {
+            // console.log(" list order action:", action)
+            let listOrder = action.payload
+            switch (listOrder) {
+                case 'price+':
+                    state.productList = state.productList.sort((a, b) => a.discountPrice - b.discountPrice)
+                    break;
+                case 'price-':
+                    state.productList = state.productList.sort((a, b) => b.discountPrice - a.discountPrice)
+                    break;
+                case 'rating+':
+                    state.productList = state.productList.sort((a, b) => a.rating - b.rating)
+                    break;
+                case 'rating-':
+                    state.productList = state.productList.sort((a, b) => b.rating - a.rating)
+                    break;
+                default:
+                    break;
+            }
+            
         }
     }
 })
 
-export const { applyFilters, displayImage, setProductList } = productSlice.actions
+export const { applyFilters, displayImage, setProductList, setListOrder } = productSlice.actions
 export const selectFilters = (state) => state.product.filters
 export const selectCategory = (state) => state.product.category
 export const selectRating = (state) => state.product.rating
 export const selectPrice = (state) => state.product.price
 export const selectDisplayedImage = (state) => state.product.displayedImage
 export const selectProductList = (state) => state.product.productList
+export const selectListOrder = (state) => state.product.order
 
 export default productSlice.reducer
 

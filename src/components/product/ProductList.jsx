@@ -8,7 +8,7 @@ import { reqGetList, reqGetProductList, reqGetImage } from "../../api";
 import  { useSelector, useDispatch } from 'react-redux'
 import { applyFilters, selectFilters, selectCategory, selectRating, selectPrice, 
     displayImage, selectDisplayedImage, 
-    setProductList, selectProductList } from '../../redux/productSlice'
+    setProductList, selectProductList, selectListOrder, setListOrder } from '../../redux/productSlice'
 
 import {store} from '../../store'
 
@@ -29,6 +29,7 @@ function ControlPanel() {
     const price = useSelector(selectPrice)
     const displayedImage = useSelector(selectDisplayedImage)
     const productList = useSelector(selectProductList)
+    const listOrder = useSelector(selectListOrder)
 
     const [categoryDisplay, setCategoryDisplay] = useState("block")
     const [ratingDisplayed, setRatingDisplayed] = useState("block")
@@ -58,10 +59,15 @@ function ControlPanel() {
             console.log("return displayed image error:", error)
         })
     }
-    
+
+    function handleDropdownSelect(e) {
+        console.log(e)
+        dispatch(setListOrder(e))
+    }
+
     function displayCategroyMenu(e) {
-        // const element = document.getElementById("dropdown-list")
-        // console.log(element, element.style.display)
+        const element = document.getElementById("dropdown-list")
+        console.log(element, element.style.display)
         if (categoryDisplay === "block") {
             setCategoryDisplay("none")
         } else if (categoryDisplay === "none") {
@@ -70,8 +76,8 @@ function ControlPanel() {
     }
 
     function displayRatingMenu(e) {
-        // const element = document.getElementById("dropdown-list")
-        // console.log(element, element.style.display)
+        const element = document.getElementById("dropdown-list")
+        console.log(element, element.style.display)
         if (ratingDisplayed === "block") {
             setRatingDisplayed("none")
         } else if (ratingDisplayed === "none") {
@@ -87,32 +93,19 @@ function ControlPanel() {
             <Row> <Search placeholder="Search"/> </Row>
             <div>
                 <Select
+                    onChange={handleDropdownSelect}
+                    id="dropdown-sort"
                     defaultValue={"Sort By Price: default"}
                     className="dropdown-order">
-                    <Option value="default"> Sort By Price: default </Option>
-                    <Option value="price+"> Sort By Price: low to high </Option>
-                    <Option value="price-"> Sort By Price: high to low </Option>
+                    <Option value="default"> Sort: default </Option>
+                    <Option value="price+"> Sort by price: lowest </Option>
+                    <Option value="price-"> Sort: by price highest </Option>
+                    <Option value="rating+"> Sort by rating: lowest </Option>
+                    <Option value="rating-"> Sort by rating: highest </Option>
+
                 </Select>
             </div>
-            <div>
-                <Select
-                    defaultValue={"Sort By Time: default"}
-                    className="dropdown-order">
-                    <Option value="default"> Sort By Time: default </Option>
-                    <Option value="time+"> Sort By Time: Oldest </Option>
-                    <Option value="time-"> Sort By Time: Newest </Option>
-                </Select>
-            </div>
-            <div>
-                <Select
-                    defaultValue={"Sort By Rating: default"}
-                    className="dropdown-order">
-                    <Option value="default"> Sort By Rating: default </Option>
-                    <Option value="rating+"> Sort By Rating: low to high </Option>
-                    <Option value="rating-"> Sort By Rating: high to low </Option>
-                </Select>
-            </div>
-                  
+
             <div className="dropdown-menu">
                 <div onClick={displayCategroyMenu} className="dropdown-button" > Categories </div>
                 <div id="category-list" style={{display:categoryDisplay}} className="dropdown-content">
