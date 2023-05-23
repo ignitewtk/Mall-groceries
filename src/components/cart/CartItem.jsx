@@ -30,7 +30,7 @@ function CartItem(props) {
             productName: props.productName }))}
 
     return (
-        <div style={{ display: "flex", margin:"20px 0"}}>
+        <div style={{ display: "flex", margin:"20px 20px 0 0"}}>
             <img style={{ height:"70px", width:"70px", margin:"0px 10px 0 0"}} src={props.src}/>
             <div>
                 <div> {props.productName} </div>
