@@ -91,7 +91,20 @@ function ControlPanel() {
             
             <Row> <span> {category} and {rating} and {price} </span></Row>
             <Row> <Search placeholder="Search"/> </Row>
+            <div>
+                <Select
+                    onChange={handleDropdownSelect}
+                    id="dropdown-sort"
+                    defaultValue={"Sort By Price: default"}
+                    className="dropdown-order">
+                    <Option value="default"> Sort: default </Option>
+                    <Option value="price+"> Sort by price: lowest </Option>
+                    <Option value="price-"> Sort: by price highest </Option>
+                    <Option value="rating+"> Sort by rating: lowest </Option>
+                    <Option value="rating-"> Sort by rating: highest </Option>
 
+                </Select>
+            </div>
 
             <div className="dropdown-menu">
                 <div onClick={displayCategroyMenu} className="dropdown-button" > Categories </div>
