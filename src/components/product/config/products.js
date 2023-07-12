@@ -1,3 +1,6 @@
+const categories = [
+    'Vegetable', 'Fruit', 'Meat'
+]
 
 
 const products = [
@@ -171,4 +174,4 @@ function getProducts(path) {
             })}
     return products}
     
-export {products}
+export {products, categories}

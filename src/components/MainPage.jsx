@@ -1,7 +1,7 @@
 
 import React from "react"
 import Banner from "./Banner";
-import { testPostApi, testGetApi } from "../api";
+import { testPostApi, testGetApi, testGetWebApp} from "../api";
 
 
 class MainPage extends React.Component {
@@ -12,9 +12,11 @@ class MainPage extends React.Component {
   }
 
   testApi() {
-    testGetApi()
+    testGetWebApp().then(response => {
+      console.log("WebApp:", response.data)
+    })
     testGetApi().then(response =>  {
-      console.log("Product List:", response.data)
+      console.log("Get API:", response.data)
   }).catch(error => {
       console.log("return product list error:", error)
   })

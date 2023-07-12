@@ -4,10 +4,16 @@
 
 import ajax from './ajax'
 
+/*
+服务器 "proxy": "https://backend202307112242.azurewebsites.net",
+本地 "proxy": "https://localhost:3050",
+*/
+
 var BASE = ''
 
 export const testPostApi = (param) => ajax(BASE + '/apiTest', param, 'POST')
 export const testGetApi = () => ajax(BASE + '/apiTest', {}, 'GET')
+export const testGetWebApp = () => ajax(BASE + '/webapp/page1', {}, 'GET')
 
 // Account
 

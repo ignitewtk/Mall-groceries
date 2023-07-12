@@ -3,7 +3,7 @@ import React, {useState} from "react"
 import Product from "./Product";
 import { Image, Button, Pagination,  Select, Row, Col, Checkbox, Input } from 'antd'
 
-import {products} from './config/products'
+import {products, categories} from './config/products'
 import { reqGetList, reqGetProductList, reqGetImage } from "../../api";
 import  { useSelector, useDispatch } from 'react-redux'
 import { applyFilters, selectFilters, selectCategory, selectRating, selectPrice, 
@@ -31,16 +31,20 @@ function ControlPanel() {
     const productList = useSelector(selectProductList)
     const listOrder = useSelector(selectListOrder)
 
+    const [searchKeywords, setSearchKeywords] = useState("")
     const [categoryDisplay, setCategoryDisplay] = useState("block")
     const [ratingDisplayed, setRatingDisplayed] = useState("block")
+
+    const [checkedCategories, setCheckedCategories] = useState([])
 
     function submitFilter() {
         
         const newParam = {
-            category: 'All',
+            category: 'ALL',
             rating: 0,
             price: 0
         }
+
         // update filter param state
         dispatch(applyFilters(newParam))
         
@@ -60,14 +64,18 @@ function ControlPanel() {
         })
     }
 
+    function onSearch(value) {
+        setSearchKeywords(value)
+    }
+
     function handleDropdownSelect(e) {
-        console.log(e)
         dispatch(setListOrder(e))
     }
 
     function displayCategroyMenu(e) {
         const element = document.getElementById("dropdown-list")
-        console.log(element, element.style.display)
+        // console.log(element)
+        // console.log(element, element.style.display)
         if (categoryDisplay === "block") {
             setCategoryDisplay("none")
         } else if (categoryDisplay === "none") {
@@ -76,8 +84,9 @@ function ControlPanel() {
     }
 
     function displayRatingMenu(e) {
-        const element = document.getElementById("dropdown-list")
-        console.log(element, element.style.display)
+        // const element = document.getElementById("dropdown-list")
+        // console.log(element)
+        // console.log(element, element.style.display)
         if (ratingDisplayed === "block") {
             setRatingDisplayed("none")
         } else if (ratingDisplayed === "none") {
@@ -85,12 +94,20 @@ function ControlPanel() {
         }
     }
 
+    function handleCategoryCheck(e) {
+        var updatedList = [...checkedCategories]
+        if (e.target.checked) {
+            updatedList = [...checkedCategories, e.target.value]
+        } else {
+            updatedList.splice(checkedCategories.indexOf(e.target.value), 1)
+        }
+        setCheckedCategories(updatedList)
+    }
+    
     return (
         <div style={{"padding":"30px 40px 0px 30px"}}>
-            
-            
             <Row> <span> {category} and {rating} and {price} </span></Row>
-            <Row> <Search placeholder="Search"/> </Row>
+            <Row> <Search placeholder="Search" onSearch={onSearch}/> </Row>
             <div>
                 <Select
                     onChange={handleDropdownSelect}
@@ -102,16 +119,20 @@ function ControlPanel() {
                     <Option value="price-"> Sort: by price highest </Option>
                     <Option value="rating+"> Sort by rating: lowest </Option>
                     <Option value="rating-"> Sort by rating: highest </Option>
-
                 </Select>
             </div>
 
             <div className="dropdown-menu">
-                <div onClick={displayCategroyMenu} className="dropdown-button" > Categories </div>
+                <div onClick={displayCategroyMenu} className="dropdown-button"> Categories </div>
                 <div id="category-list" style={{display:categoryDisplay}} className="dropdown-content">
-                    <Row className="dropdown-item"><Checkbox> Vegetable </Checkbox></Row>
-                    <Row className="dropdown-item"><Checkbox> Fruit </Checkbox></Row>
-                    <Row className="dropdown-item"><Checkbox> Meat </Checkbox></Row>
+                    {
+                        categories.map(item => (
+                            <Row>
+                                <Checkbox className="dropdown-item" 
+                                    value={item} key={item} onChange={handleCategoryCheck}> {item} </Checkbox>
+                            </Row>
+                        ))
+                    }
                 </div>
             </div>
 
@@ -127,11 +148,10 @@ function ControlPanel() {
                 // referrer="no-referrer|origin|unsafe-url" 
                 src={displayedImage} 
                 /> */}
-            <div> <span> {displayedImage} </span></div>
+            {/* <div> <span> {displayedImage} </span></div> */}
             <Row> <Button onClick={submitFilter} type="primary" id="btn-applyFilter"> Apply Filters </Button> </Row> 
             
         </div>
-        
     )
 }
 
@@ -183,9 +203,7 @@ class ProductList extends React.Component {
                             />
                         </Row>
                     </div>
-                    
                 </Col>
-
             </Row>
         )
     }

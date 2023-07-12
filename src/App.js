@@ -14,16 +14,14 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Theme />}>
+          <Route path='/' element={<ProductList />}/>
+          <Route path='/productList' element={<ProductList />}/>
           <Route path='main' element={<MainPage />}/>
-          <Route path='productList' element={<ProductList />}/>
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/profile' element={<UserProfile />} />
           <Route path='payment' element={<Payment />} />
         </Route>
-        
-
-        {/* <Route path='/login' element={<Login />}/> */}
       </Routes>
     </BrowserRouter>
   );

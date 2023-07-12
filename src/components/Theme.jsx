@@ -140,17 +140,17 @@ class ThemeHeader extends React.Component {
           <Col span={14}>  
             <Button style={{ display:"flex", justifyContent: "center", width:"60px", 
               color:"white", borderColor:"transparent", backgroundColor: "transparent", 
-              float:"right", padding: "0", margin:"0 15px 0 0", fontSize:"20px"}} onClick={this.showCart}> 
-              <ShoppingCartOutlined style={{margin:"5px 0 0 0",  fontSize:"20px" }}/></Button>  
+              float:"right", padding: "0", margin:"0 15px 0 0", fontSize:"15px"}} onClick={this.showCart}> 
+              <ShoppingCartOutlined style={{margin:"5px 0 0 0",  fontSize:"15px" }}/></Button>  
 
-            <Link to='profile' style={{ float:"right", margin:"0 15px 0 0", fontSize:"20px"}}> <UserOutlined /> {store.getState().account.sessionUserName} </Link> 
-            <Link to='login' style={{ float:"right", margin:"0 15px 0 0", fontSize:"20px"}}>Login</Link> 
+            <Link to='profile' style={{ float:"right", margin:"0 15px 0 0", fontSize:"15px"}}> <UserOutlined /> {store.getState().account.sessionUserName} </Link> 
+            <Link to='login' style={{ float:"right", margin:"0 15px 0 0", fontSize:"15px"}}>Login</Link> 
             
             <Button style={{ 
               display:"flex", justifyContent: "center", width:"60px", color:"white", 
               borderColor:"transparent", backgroundColor: "transparent", float:"right", 
-              padding: "0", margin:"0 15px 0 0", fontSize:"20px"}}> 
-              <EnvironmentOutlined style={{ margin:"5px 0 0 0", fontSize:"20px"}}/></Button>  
+              padding: "0", margin:"0 15px 0 0", fontSize:"15px"}}> 
+              <EnvironmentOutlined style={{ margin:"5px 0 0 0", fontSize:"15px"}}/></Button>  
           </Col>
         </Row>
       </div>
